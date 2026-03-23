@@ -2,9 +2,10 @@
 
 ## Project overview
 
-A multiplayer immersive narrative experience powered by LLMs. Two meta prompts form a
-hub-and-spoke system: one GM hub prompt orchestrates the world, and one player spoke
-template is personalized per player. No application code — pure prompt engineering.
+A multiplayer immersive narrative experience powered by a single LLM. One GM prompt
+drives the entire experience — players don't need AI. They read DMs from the GM and
+respond naturally. The GM relays their responses to the LLM, which generates the next
+chapter. No application code — pure prompt engineering.
 
 Based on the echo game type from E.C.H.O. v1.0, with key innovations:
 dynamic echo mechanic, sensory memory, echo crossweave, and personal finale.
@@ -13,8 +14,9 @@ All narrative output is in **Dutch**. All documentation and prompt structure is 
 
 ## Files
 
-- `prompt.md` — GM hub prompt (the Game Master loads this into their LLM session)
-- `prompt-player.md` — Player spoke template (GM's LLM fills the `{{PLACEHOLDERS}}` and generates one per player)
+- `prompt.md` — The master prompt (the Game Master loads this into their LLM session)
+- `spelers-uitleg.md` — Dutch player guide (posted in the group before the game starts)
+- `gamemaster-uitleg.md` — Dutch GM guide (step-by-step instructions for the Game Master)
 - `README.md` — How to play and design rationale
 
 ## Conventions

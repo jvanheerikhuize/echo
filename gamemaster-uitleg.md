@@ -13,13 +13,16 @@ WAT IS E.C.H.O.?
 
   E.C.H.O. is een gedeelde zintuiglijke verhaalbeleving.
   Elke speler beleeft hetzelfde verhaal vanuit een eigen
-  perspectief — alleen, in een eigen AI-gesprek. Wat ze
-  voelen beïnvloedt het verloop. Aan het eind komen alle
-  verhaallijnen samen in een gedeelde finale.
+  perspectief — via DM met jou. Wat ze voelen beïnvloedt
+  het verloop. Aan het eind komen alle verhaallijnen
+  samen in een gedeelde finale.
 
   Jij bent de spelleider. Je hoeft het verhaal niet te
   verzinnen — dat doet de AI. Jij bent de schakel tussen
   de spelers en de AI die het verhaal vertelt.
+
+  Spelers hebben geen AI nodig. Ze lezen jouw DM's
+  en reageren in hun eigen woorden.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 WAT HEB JE NODIG?
@@ -34,11 +37,11 @@ WAT HEB JE NODIG?
 JOUW ROL
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Je bent de doorgeefluik — maar een belangrijke.
+  Je bent de schakel — maar een belangrijke.
   De AI kan niet rechtstreeks met spelers praten.
   Jij kopieert berichten heen en weer:
 
-    AI → jij → speler    (hoofdstukken doorsturen)
+    AI → jij → speler    (hoofdstukken via DM)
     speler → jij → AI    (reacties invoeren)
 
   De AI vertelt je bij élke stap precies wat je moet
@@ -73,7 +76,8 @@ FASE 1 — VOORBEREIDING
 
   7. Typ: START
      → De AI genereert de wereld en laat je de
-       details zien.
+       details zien, inclusief een introductie-DM
+       die je naar elke speler stuurt.
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 FASE 2 — SPELERS KLAARZETTEN
@@ -82,22 +86,20 @@ FASE 2 — SPELERS KLAARZETTEN
   8. Post de spelers-uitleg (spelers-uitleg.md)
      in de groep, zodat iedereen weet hoe het werkt.
 
-  9. Typ in je AI-sessie:
-     GENEREER SPOKE SPELER_1
-     → Je krijgt een code block met de persoonlijke
-       prompt voor die speler.
+  9. Stuur elke speler de introductie-DM die de AI
+     je heeft gegeven. Hierin wordt gevraagd:
+     "Hoe wil je genoemd worden? Hij/zij/hen?
+      Hoe oud ben je?"
 
-  10. Kopieer de tekst uit het code block en stuur
-      het via DM naar de speler.
+  10. Als een speler antwoordt, typ in je AI-sessie:
+      PROFIEL SPELER_1: Mila, zij, 34
+      → De AI bevestigt het profiel.
 
-  11. Herhaal stap 9-10 voor elke speler:
-      GENEREER SPOKE SPELER_2
-      GENEREER SPOKE SPELER_3
-      ... enzovoort.
+  11. Typ: WELKOM SPELER_1
+      → Je krijgt een persoonlijk welkomstbericht.
+         Kopieer het en stuur het via DM.
 
-  12. Vertel elke speler:
-      "Plak deze tekst in een nieuw gesprek met een
-       AI (Claude, ChatGPT, etc.) en volg de instructies."
+  12. Herhaal stap 10-11 voor elke speler.
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 FASE 3 — HET SPEL
@@ -107,11 +109,12 @@ FASE 3 — HET SPEL
   elk hoofdstuk:
 
   13. Een speler stuurt je een DM met hun reactie.
-      Dat ziet er zo uit:
-        ACTIE SPELER_1: Ik voelde warmte en hoorde
-        iets als een verre klok
+      Dat kan van alles zijn: "Ik voelde warmte",
+      "Het was stil", of gewoon "verder".
 
-  14. Kopieer dat bericht en plak het in je AI-sessie.
+  14. Typ in je AI-sessie:
+      ACTIE SPELER_1: [wat de speler zei]
+      Voorbeeld: ACTIE SPELER_1: Ik voelde warmte
 
   15. De AI genereert het volgende hoofdstuk en zegt
       precies:
@@ -152,9 +155,12 @@ ALLE COMMANDO'S
     /duur [Nmin]
     START
 
+  Spelers registreren:
+    PROFIEL [SPELER_ID]: [roepnaam], [geslacht], [leeftijd]
+    WELKOM [SPELER_ID]
+
   Tijdens het spel:
-    ACTIE [SPELER_ID]: [tekst van speler]
-    GENEREER SPOKE [SPELER_ID]
+    ACTIE [SPELER_ID]: [wat de speler zei]
     /status
 
   Afsluiting:
@@ -173,6 +179,10 @@ TIPS
 
   • De AI geeft na elke stap een "VOLGENDE STAP"
     blok. Volg dat gewoon.
+
+  • Spelers sturen je gewone berichten — geen
+    speciaal formaat nodig. Typ zelf ACTIE [ID]: ...
+    met wat ze zeiden.
 
   • Spelers hoeven niet tegelijk te spelen. Iedereen
     gaat op eigen tempo.

@@ -6,7 +6,7 @@ Players are guided through an immersive story that engages all five senses, narr
 
 ## How It Works
 
-E.C.H.O. uses a **hub-and-spoke architecture**. One person acts as Game Master (GM) and runs the hub prompt. Each player gets a personalized spoke prompt in their own LLM session. The GM relays messages between sessions.
+E.C.H.O. uses a **single-LLM architecture**. One person acts as Game Master (GM) and runs the prompt. Players don't need AI — they just read DMs from the GM and respond naturally with what they felt. The GM relays their responses to the LLM, which generates the next chapter.
 
 ```
                  ┌──────────────────────┐
@@ -20,8 +20,8 @@ E.C.H.O. uses a **hub-and-spoke architecture**. One person acts as Game Master (
            ▼                ▼                ▼
    ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
    │  Player 1    │ │  Player 2    │ │  Player N    │
-   │  own LLM     │ │  own LLM     │ │  own LLM     │
-   │  own spoke   │ │  own spoke   │ │  own spoke   │
+   │  reads DMs   │ │  reads DMs   │ │  reads DMs   │
+   │  responds    │ │  responds    │ │  responds    │
    └──────────────┘ └──────────────┘ └──────────────┘
 ```
 
@@ -30,19 +30,20 @@ E.C.H.O. uses a **hub-and-spoke architecture**. One person acts as Game Master (
 1. Copy the prompt from the code block in [`prompt.md`](prompt.md).
 2. Paste it into a fresh LLM session (Claude, ChatGPT, Gemini). This is the **GM session**.
 3. Configure: `/spelers 3 Alice, Bob, Charlie` and optionally `/thema` and `/duur`.
-4. Type `START`. E.C.H.O. generates the world.
-5. Run `GENEREER SPOKE SPELER_1`, `GENEREER SPOKE SPELER_2`, etc.
-6. Send each player their spoke via DM. They paste it into their own LLM session.
-7. Players interact with their spoke. They send actions to you via DM.
-8. You relay with `ACTIE SPELER_1: [what they said]`. E.C.H.O. generates the next chapter.
-9. Send the chapter back to the player via DM. Repeat.
-10. When everyone reaches the convergence point, type `/finale` for the shared ending.
+4. Type `START`. E.C.H.O. generates the world and an intro message for players.
+5. DM the intro message to each player. They respond with their name, pronouns, and age.
+6. Register each player: `PROFIEL SPELER_1: Alice, zij, 28`.
+7. Generate welcome messages: `WELKOM SPELER_1`, `WELKOM SPELER_2`, etc. Send via DM.
+8. Players read the welcome and respond with `verder` or what they felt.
+9. You relay with `ACTIE SPELER_1: [what they said]`. E.C.H.O. generates the next chapter.
+10. Send the chapter back to the player via DM. Repeat.
+11. When everyone reaches the convergence point, type `/finale` for the shared ending.
 
 ## What Makes This Special
 
 ### The Echo Mechanic
 
-After each chapter, the player's spoke invites them to share what they felt, saw, or imagined. This response — their **echo** — gets relayed to the GM hub. The GM extracts sensory and emotional keywords and stores them in an **echo register** per player.
+After each chapter, the player is invited to share what they felt, saw, or imagined. This response — their **echo** — gets relayed by the GM to the LLM. The GM extracts sensory and emotional keywords and stores them in an **echo register** per player.
 
 The next chapter is generated dynamically, incorporating the player's echoes. If someone mentioned "warmth", the next chapter breathes warmth. If someone felt "loneliness", the story gently acknowledges it. Every playthrough is unique because the story listens.
 
@@ -72,22 +73,22 @@ All narrative output is in **Dutch**. The game is designed for Dutch-speaking pl
 | `/thema [text]` | Set a theme (optional — auto-generated if omitted) |
 | `/duur [Nmin]` | Set time limit in minutes (optional) |
 | `START` | Generate the world |
-| `GENEREER SPOKE [ID]` | Generate a player's spoke prompt |
-| `ACTIE [ID]: [text]` | Relay a player's action/echo |
+| `PROFIEL [ID]: [name, pronouns, age]` | Register a player's profile |
+| `WELKOM [ID]` | Generate a player's welcome message |
+| `ACTIE [ID]: [text]` | Relay a player's response/echo |
 | `/status` | View session status |
 | `/finale` | Trigger the shared ending |
 | `/einde` | End the session |
 | `/taal [NL\|EN]` | Switch output language |
 
-## Player Commands
+## Player Responses
 
-| Command | Description |
-|---------|-------------|
-| `verder` | Advance to the next chapter |
-| `herhaal` | Re-experience the current chapter |
-| `pauzeer` | Pause — the story waits |
-| `/status` | See where you are in the story |
-| *(free text)* | Share your echo — what you felt, saw, imagined |
+Players don't need commands or an AI. They simply:
+- Read the DM from the GM
+- Respond with what they felt, saw, or imagined
+- Or send `verder` if they want to move on without sharing
+
+There is no wrong response. The story adapts.
 
 ## Credits
 
