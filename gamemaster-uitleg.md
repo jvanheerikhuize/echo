@@ -172,6 +172,8 @@ ALLE COMMANDO'S
   Tijdens het spel:
     ACTIE [SPELER_ID]: [wat de speler zei]
     /status
+    /puls              → sfeervol groepsbericht over de voortgang
+    /rust              → sluit de dag af met een sfeervol groepsbericht
 
   Sessie opslaan/hervatten:
     /save              → exporteert de state als JSON

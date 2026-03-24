@@ -79,6 +79,8 @@ All narrative output is in **Dutch**. The game is designed for Dutch-speaking pl
 | `WELKOM [ID]` | Generate a player's welcome message |
 | `ACTIE [ID]: [text]` | Relay a player's response/echo |
 | `/status` | View session status |
+| `/puls` | Generate an in-story progress update for the group |
+| `/rust` | Generate an in-story group message to close the day |
 | `/save` | Export full session state as JSON (for migrating to another chat) |
 | `/load` | Import a previously saved session state |
 | `/finale` | Trigger the shared ending |
