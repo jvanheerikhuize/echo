@@ -20,9 +20,10 @@ Alleen jouw ervaring.
 HOE HET WERKT
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
-1. Ik stuur je eerst een korte vraag via DM —
-   vertel me hoe je genoemd wilt worden, je
-   voornaamwoord (hij/zij/hen) en je leeftijd.
+1. Ik stuur je eerst een paar vragen via DM —
+   over hoe je aangesproken wilt worden, welk
+   zintuig je het meest aanspreekt, hoe je je
+   voelt, en een herinnering die thuiskomen is.
 
 2. Daarna krijg je een welkomstbericht via DM.
    Lees het — dit is het begin van jouw verhaal.

@@ -32,7 +32,7 @@ E.C.H.O. uses a **single-LLM architecture**. One person acts as Game Master (GM)
 3. Configure: `/spelers 3 Alice, Bob, Charlie` and optionally `/thema`, `/beurten`, and `/beeld`.
 4. Type `START`. E.C.H.O. generates the world and an intro message for players.
 5. DM the intro message to each player. They respond with their name, pronouns, and age.
-6. Register each player: `PROFIEL SPELER_1: Alice, zij, 28`.
+6. Register each player: `PROFIEL SPELER_1: zij, 28, horen, rustig, koffiegeur in de ochtend`.
 7. Generate welcome messages: `WELKOM SPELER_1`, `WELKOM SPELER_2`, etc. Send via DM.
 8. Players read the welcome and respond with `verder` or what they felt.
 9. You relay each response with `ACTIE SPELER_1: [what they said]`.
@@ -75,10 +75,12 @@ All narrative output is in **Dutch**. The game is designed for Dutch-speaking pl
 | `/beurten [N]` | Set max turns per player (optional) |
 | `/beeld` | Toggle image prompt generation per chapter (optional) |
 | `START` | Generate the world |
-| `PROFIEL [ID]: [name, pronouns, age]` | Register a player's profile |
+| `PROFIEL [ID]: [player's response]` | Register a player's profile (pronouns, age, senses, mood, memory) |
 | `WELKOM [ID]` | Generate a player's welcome message |
 | `ACTIE [ID]: [text]` | Relay a player's response/echo |
 | `/status` | View session status |
+| `/save` | Export full session state as JSON (for migrating to another chat) |
+| `/load` | Import a previously saved session state |
 | `/finale` | Trigger the shared ending |
 | `/einde` | End the session |
 | `/taal [NL\|EN]` | Switch output language |

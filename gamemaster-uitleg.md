@@ -93,11 +93,13 @@ FASE 2 — SPELERS KLAARZETTEN
 
   11. Stuur elke speler de introductie-DM die de AI
       je heeft gegeven. Hierin wordt gevraagd:
-      "Hoe wil je genoemd worden? Hij/zij/hen?
-       Hoe oud ben je?"
+      hij/zij/hen, leeftijd, voorkeurssintuig,
+      stemming, en een persoonlijke zintuigherinnering.
 
   12. Als een speler antwoordt, typ in je AI-sessie:
-      PROFIEL SPELER_1: Mila, zij, 34
+      PROFIEL SPELER_1: [wat de speler zei]
+      Voorbeeld: PROFIEL SPELER_1: zij, 34, horen,
+        rustig, koffiegeur in de ochtend
       → De AI bevestigt het profiel.
 
   13. Typ: WELKOM SPELER_1
@@ -164,12 +166,16 @@ ALLE COMMANDO'S
     START
 
   Spelers registreren:
-    PROFIEL [SPELER_ID]: [roepnaam], [geslacht], [leeftijd]
+    PROFIEL [SPELER_ID]: [wat de speler antwoordde]
     WELKOM [SPELER_ID]
 
   Tijdens het spel:
     ACTIE [SPELER_ID]: [wat de speler zei]
     /status
+
+  Sessie opslaan/hervatten:
+    /save              → exporteert de state als JSON
+    /load              → laadt een eerder opgeslagen state
 
   Afsluiting:
     /finale
@@ -192,8 +198,8 @@ TIPS
     speciaal formaat nodig. Typ zelf ACTIE [ID]: ...
     met wat ze zeiden.
 
-  • Spelers hoeven niet tegelijk te spelen. Iedereen
-    gaat op eigen tempo.
+  • Het spel wacht op alle reacties per ronde.
+    Gebruik /status om te zien wie je nog mist.
 
   • Gebruik /status als je het overzicht kwijt bent.
 
