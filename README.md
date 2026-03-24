@@ -29,15 +29,16 @@ E.C.H.O. uses a **single-LLM architecture**. One person acts as Game Master (GM)
 
 1. Copy the prompt from the code block in [`prompt.md`](prompt.md).
 2. Paste it into a fresh LLM session (Claude, ChatGPT, Gemini). This is the **GM session**.
-3. Configure: `/spelers 3 Alice, Bob, Charlie` and optionally `/thema` and `/duur`.
+3. Configure: `/spelers 3 Alice, Bob, Charlie` and optionally `/thema`, `/beurten`, and `/beeld`.
 4. Type `START`. E.C.H.O. generates the world and an intro message for players.
 5. DM the intro message to each player. They respond with their name, pronouns, and age.
 6. Register each player: `PROFIEL SPELER_1: Alice, zij, 28`.
 7. Generate welcome messages: `WELKOM SPELER_1`, `WELKOM SPELER_2`, etc. Send via DM.
 8. Players read the welcome and respond with `verder` or what they felt.
-9. You relay with `ACTIE SPELER_1: [what they said]`. E.C.H.O. generates the next chapter.
-10. Send the chapter back to the player via DM. Repeat.
-11. When everyone reaches the convergence point, type `/finale` for the shared ending.
+9. You relay each response with `ACTIE SPELER_1: [what they said]`.
+10. When ALL players have responded, E.C.H.O. generates the next chapter for everyone at once.
+11. Send each player their personal chapter via DM. Repeat from step 8.
+12. When the convergence point is reached, type `/finale` for the shared ending.
 
 ## What Makes This Special
 
@@ -71,7 +72,8 @@ All narrative output is in **Dutch**. The game is designed for Dutch-speaking pl
 |---------|-------------|
 | `/spelers [2-6] [names]` | Register players with names |
 | `/thema [text]` | Set a theme (optional — auto-generated if omitted) |
-| `/duur [Nmin]` | Set time limit in minutes (optional) |
+| `/beurten [N]` | Set max turns per player (optional) |
+| `/beeld` | Toggle image prompt generation per chapter (optional) |
 | `START` | Generate the world |
 | `PROFIEL [ID]: [name, pronouns, age]` | Register a player's profile |
 | `WELKOM [ID]` | Generate a player's welcome message |

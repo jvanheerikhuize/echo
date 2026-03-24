@@ -71,10 +71,15 @@ FASE 1 — VOORBEREIDING
   5. Optioneel — stel een thema in:
      /thema een verlaten vuurtoren aan de kust
 
-  6. Optioneel — stel een tijdslimiet in:
-     /duur 45min
+  6. Optioneel — stel een beurtenlimiet in:
+     /beurten 5
 
-  7. Typ: START
+  7. Optioneel — zet afbeeldingsprompts aan:
+     /beeld
+     (bij elk hoofdstuk krijg je een prompt die je
+      kunt gebruiken om een afbeelding te genereren)
+
+  9. Typ: START
      → De AI genereert de wereld en laat je de
        details zien, inclusief een introductie-DM
        die je naar elke speler stuurt.
@@ -83,67 +88,69 @@ FASE 1 — VOORBEREIDING
 FASE 2 — SPELERS KLAARZETTEN
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
-  8. Post de spelers-uitleg (spelers-uitleg.md)
-     in de groep, zodat iedereen weet hoe het werkt.
+  10. Post de spelers-uitleg (spelers-uitleg.md)
+      in de groep, zodat iedereen weet hoe het werkt.
 
-  9. Stuur elke speler de introductie-DM die de AI
-     je heeft gegeven. Hierin wordt gevraagd:
-     "Hoe wil je genoemd worden? Hij/zij/hen?
-      Hoe oud ben je?"
+  11. Stuur elke speler de introductie-DM die de AI
+      je heeft gegeven. Hierin wordt gevraagd:
+      "Hoe wil je genoemd worden? Hij/zij/hen?
+       Hoe oud ben je?"
 
-  10. Als een speler antwoordt, typ in je AI-sessie:
+  12. Als een speler antwoordt, typ in je AI-sessie:
       PROFIEL SPELER_1: Mila, zij, 34
       → De AI bevestigt het profiel.
 
-  11. Typ: WELKOM SPELER_1
+  13. Typ: WELKOM SPELER_1
       → Je krijgt een persoonlijk welkomstbericht.
          Kopieer het en stuur het via DM.
 
-  12. Herhaal stap 10-11 voor elke speler.
+  14. Herhaal stap 12-13 voor elke speler.
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 FASE 3 — HET SPEL
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
-  Nu begint de loop. Dit herhaal je voor elke speler,
-  elk hoofdstuk:
+  Het spel werkt in rondes. Elke ronde wacht je
+  tot ALLE spelers hebben gereageerd.
 
-  13. Een speler stuurt je een DM met hun reactie.
+  15. Spelers sturen je een DM met hun reactie.
       Dat kan van alles zijn: "Ik voelde warmte",
       "Het was stil", of gewoon "verder".
 
-  14. Typ in je AI-sessie:
+  16. Geef elke reactie door in je AI-sessie:
       ACTIE SPELER_1: [wat de speler zei]
       Voorbeeld: ACTIE SPELER_1: Ik voelde warmte
+      → De AI bevestigt de ontvangst en laat zien
+        wie er nog mist.
 
-  15. De AI genereert het volgende hoofdstuk en zegt
-      precies:
-        • Wat je via DM naar die speler moet sturen
-        • Wat je in de groep moet posten
+  17. Zodra alle spelers hebben geantwoord, genereert
+      de AI het volgende hoofdstuk voor iedereen
+      tegelijk. Je krijgt per speler:
+        • Een DM-tekst om naar die speler te sturen
+      Plus één groepsbericht.
 
-  16. Kopieer en verstuur beide berichten.
+  18. Stuur elk DM-blok naar de juiste speler.
+      Stuur het groepsbericht in het groepkanaal.
 
-  17. Wacht op de volgende spelerreactie. Herhaal.
+  19. Wacht op alle reacties. Herhaal.
 
-  TIP: Spelers spelen op hun eigen tempo. Het is
-  normaal dat de ene speler verder is dan de andere.
-  Typ /status om te zien waar iedereen is.
+  TIP: Typ /status om te zien wie al heeft
+  gereageerd en wie je nog mist.
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 FASE 4 — DE FINALE
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
-  18. Wanneer een speler het op-één-na-laatste
-      hoofdstuk bereikt, krijg je een convergentie-
-      melding. De speler wacht nu op de anderen.
+  20. Na de laatste ronde bereiken alle spelers
+      tegelijk de drempel. Je krijgt een
+      convergentiemelding.
 
-  19. Zodra alle spelers bij de drempel zijn (of als
-      je wilt forceren), typ: /finale
+  21. Typ: /finale
 
-  20. De AI genereert het eindverhaal. Stuur het via
+  22. De AI genereert het eindverhaal. Stuur het via
       DM naar elke speler én post het in de groep.
 
-  21. Klaar! Typ /einde voor een samenvatting.
+  23. Klaar! Typ /einde voor een samenvatting.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ALLE COMMANDO'S
@@ -152,7 +159,8 @@ ALLE COMMANDO'S
   Configuratie:
     /spelers [2-6] [naam1, naam2, ...]
     /thema [beschrijving]
-    /duur [Nmin]
+    /beurten [N]
+    /beeld
     START
 
   Spelers registreren:

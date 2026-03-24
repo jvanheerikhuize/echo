@@ -32,7 +32,8 @@ HOE HET WERKT
    Alles mag — een gevoel, een beeld, een kleur.
    Geen inspiratie? Stuur gewoon "verder".
 
-4. Ik stuur je het volgende hoofdstuk.
+4. Zodra iedereen heeft geantwoord, stuur ik
+   jullie allemaal het volgende hoofdstuk.
    Lees, voel, reageer. Zo gaat het door
    tot het einde.
 
