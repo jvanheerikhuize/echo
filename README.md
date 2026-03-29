@@ -1,27 +1,27 @@
 # E.C.H.O. — Experiential Collaborative Hub Orchestrator
 
-A shared, immersive sensory narrative experience for 2-6 players, powered by any advanced LLM.
+An immersive multiplayer narrative experience for 2-6 players, powered by any advanced LLM. Built around mystery, roles, and decisions.
 
-Players are guided through an immersive story that engages all five senses, narrated with the dry wit of a classic Infocom text adventure. Everyone plays alone — but the story weaves them together, and they arrive at the same ending: **samen, alleen** (together, alone).
+Players are assigned roles — Observer, Listener, Keeper, or Anchor — each perceiving a different slice of the same reality. A mystery unfolds through their choices. No one has the full picture alone. The answer only assembles when all perspectives combine.
 
 ## How It Works
 
-E.C.H.O. uses a **single-LLM architecture**. One person acts as Game Master (GM) and runs the prompt. Players don't need AI — they just read DMs from the GM and respond naturally with what they felt. The GM relays their responses to the LLM, which generates the next chapter.
+E.C.H.O. uses a **single-LLM architecture**. One person acts as Game Master (GM) and runs the prompt. Players don't need AI — they read DMs from the GM, make decisions, and respond. The GM relays their choices to the LLM, which generates the next chapter with consequences.
 
 ```
                  ┌──────────────────────┐
                  │   GM's LLM Session   │
-                 │   loads: prompt.md   │
-                 │   sees: everything   │
+                 │   loads: prompt.md    │
+                 │   sees: everything    │
                  └──────────┬───────────┘
                             │
            ┌────────────────┼────────────────┐
            │ DM             │ DM             │ DM
            ▼                ▼                ▼
    ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
-   │  Player 1    │ │  Player 2    │ │  Player N    │
-   │  reads DMs   │ │  reads DMs   │ │  reads DMs   │
-   │  responds    │ │  responds    │ │  responds    │
+   │  Observer     │ │  Listener    │ │  Keeper      │
+   │  sees layout  │ │  hears clues │ │  finds objects│
+   │  decides where│ │  decides who │ │  decides what │
    └──────────────┘ └──────────────┘ └──────────────┘
 ```
 
@@ -29,73 +29,89 @@ E.C.H.O. uses a **single-LLM architecture**. One person acts as Game Master (GM)
 
 1. Copy the prompt from the code block in [`prompt.md`](prompt.md).
 2. Paste it into a fresh LLM session (Claude, ChatGPT, Gemini). This is the **GM session**.
-3. Configure: `/spelers 3 Alice, Bob, Charlie` and optionally `/thema`, `/beurten`, and `/beeld`.
-4. Type `START`. E.C.H.O. generates the world and an intro message for players.
-5. DM the intro message to each player. They respond with their name, pronouns, and age.
-6. Register each player: `PROFIEL SPELER_1: zij, 28, horen, rustig, koffiegeur in de ochtend`.
-7. Generate welcome messages: `WELKOM SPELER_1`, `WELKOM SPELER_2`, etc. Send via DM.
-8. Players read the welcome and respond with `verder` or what they felt.
-9. You relay each response with `ACTIE SPELER_1: [what they said]`.
-10. When ALL players have responded, E.C.H.O. generates the next chapter for everyone at once.
+3. Configure: `/players 3 Alex, Sam, Jordan` and optionally `/theme` and `/turns`.
+4. Type `START`. E.C.H.O. generates a titled world with a mystery.
+5. DM the intake questions to each player. They respond with their answers.
+6. Register each player: `PROFILE PLAYER_1: English, she/her, 28, I notice the exits, sight, ...`
+7. E.C.H.O. assigns a role. Generate welcome: `WELCOME PLAYER_1`. Send via DM.
+8. Players read their chapter, face a decision, and respond with their choice.
+9. Relay each response: `ACTION PLAYER_1: I took the notebook`.
+10. When ALL players have responded, E.C.H.O. generates the next chapter for everyone.
 11. Send each player their personal chapter via DM. Repeat from step 8.
-12. When the convergence point is reached, type `/finale` for the shared ending.
+12. At the convergence point, type `/finale` for the shared ending.
 
-## What Makes This Special
+## Core Mechanics
 
-### The Echo Mechanic
+### Roles
 
-After each chapter, the player is invited to share what they felt, saw, or imagined. This response — their **echo** — gets relayed by the GM to the LLM. The GM extracts sensory and emotional keywords and stores them in an **echo register** per player.
+Each player is assigned a role based on their intake answers. Roles determine what you perceive and what decisions you face:
 
-The next chapter is generated dynamically, incorporating the player's echoes. If someone mentioned "warmth", the next chapter breathes warmth. If someone felt "loneliness", the story gently acknowledges it. Every playthrough is unique because the story listens.
+| Role | Perceives | Decides on |
+|------|-----------|------------|
+| **Observer** | Visual details, spatial layout, patterns, light | Where to go, what to examine |
+| **Listener** | Sounds, voices, rhythms, silences, recordings | Who to trust, what signals mean |
+| **Keeper** | Objects, textures, mechanisms, traces, tools | What to take, use, or leave behind |
+| **Anchor** | Atmosphere, temperature, instinct, timing | When to act, wait, or warn |
 
-### Echo Crossweave
+### Decisions, Not Feelings
 
-Echoes don't stay isolated. When generating togetherness moments (the subtle signals that other players share the journey), the GM uses echoes from *other* players — without attribution. If Player A echoed "rain", Player B might encounter: *"Ergens ruikt iemand anders dezelfde regen."*
+Each chapter ends with a concrete, role-appropriate choice. Your decisions have consequences that shape the next chapter. The Observer chooses which corridor to investigate. The Listener decides whether to trust the recording. The Keeper picks which object to take. Every choice matters.
 
-This creates genuine sensory bridges between players who never directly communicate.
+### Signal Register & Crossweave
 
-### Personal Finale
+After each decision, E.C.H.O. extracts signals — sensory details and decision outcomes — and stores them in a **signal register** per player. These signals progressively bleed into other players' realities:
 
-The shared ending weaves each player's accumulated echoes into a single closing scene. The player who felt warmth finds warmth waiting. The player who heard silence discovers silence at the center. Everyone is named. Everyone is present. The ending is shared — but deeply personal.
+- **Early (HINT):** "Someone else has been here. The dust is disturbed."
+- **Middle (BLEED):** Unexplained clues from other players' decisions appear in your scene.
+- **Late (MERGE):** Other players' choices directly affect your reality.
+- **Finale (REVEAL):** All signals converge. The mystery resolves. Names appear for the first time.
 
-### No Failure State
+### Mystery Plot
 
-There is no way to lose. No wrong answers. No puzzles to solve. The only objective: *"Volg het verhaal. Laat het toe. Kom aan bij het einde."* (Follow the story. Allow it. Arrive at the ending.)
+Every session is built around a central mystery with real stakes. The plot follows a narrative arc — discovery, complication, revelation, resolution — not an emotional mood trajectory. Each session gets a unique title tied to its specific story.
 
-## Language
+### Multilingual
 
-All narrative output is in **Dutch**. The game is designed for Dutch-speaking players. The prompts, documentation, and structural labels are in English.
+All internal systems are English. Player-facing narrative renders in each player's chosen language. Different players in the same session can play in different languages.
 
 ## GM Commands
 
 | Command | Description |
 |---------|-------------|
-| `/spelers [2-6] [names]` | Register players with names |
-| `/thema [text]` | Set a theme (optional — auto-generated if omitted) |
-| `/beurten [N]` | Set max turns per player (optional) |
-| `/beeld` | Toggle image prompt generation per chapter (optional) |
-| `START` | Generate the world |
-| `PROFIEL [ID]: [player's response]` | Register a player's profile (pronouns, age, senses, mood, memory) |
-| `WELKOM [ID]` | Generate a player's welcome message |
-| `ACTIE [ID]: [text]` | Relay a player's response/echo |
-| `/status` | View session status |
-| `/puls` | Generate an in-story progress update for the group |
-| `/rust` | Generate an in-story group message to close the day |
-| `/save` | Export full session state as JSON (for migrating to another chat) |
-| `/load` | Import a previously saved session state |
+| `/players [2-6] [names]` | Register players |
+| `/theme [text]` | Set a theme (optional — auto-generated if omitted) |
+| `/turns [N]` | Set max turns per player (optional) |
+| `START` | Generate the world and title |
+| `PROFILE [ID]: [answers]` | Register a player's profile and assign role |
+| `WELCOME [ID]` | Generate a player's welcome message |
+| `ACTION [ID]: [text]` | Relay a player's decision |
+| `/status` | View session status, player insights, timing |
+| `/state` | Dump full raw state as JSON |
+| `/state [ID]` | Dump a single player's state |
+| `/pulse` | In-story progress update for the group |
+| `/rest` | Day-closing story beat for the group |
+| `/hint [ID]` | Send a nudge to a stuck player |
+| `/save` | Export complete state for session transfer |
+| `/load` | Import a saved state into a new session |
 | `/finale` | Trigger the shared ending |
-| `/einde` | End the session |
-| `/taal [NL\|EN]` | Switch output language |
+| `/end` | End session with summary |
 
-## Player Responses
+## Player Experience
 
-Players don't need commands or an AI. They simply:
-- Read the DM from the GM
-- Respond with what they felt, saw, or imagined
-- Or send `verder` if they want to move on without sharing
+Players don't need commands or AI. They:
+1. Answer intake questions (language, pronouns, perception style, instinct, etc.)
+2. Receive a role assignment and personalized welcome
+3. Read each chapter — a scene filtered through their role
+4. Make a decision at the end of each chapter
+5. Respond with their choice (a sentence, a word, whatever feels right)
 
-There is no wrong response. The story adapts.
+Every decision shapes what happens next. There are consequences.
+
+## Guides
+
+- [`gm-guide.md`](gm-guide.md) — Detailed guide for Game Masters
+- [`player-guide.md`](player-guide.md) — Quick guide for players
 
 ## Credits
 
-Based on the echo game type from [E.C.H.O. v1.0](https://github.com/jvanheerikhuize/prompt-gallery) by Jerry van Heerikhuize.
+Based on E.C.H.O. v1.0 by Jerry van Heerikhuize.
