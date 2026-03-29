@@ -475,6 +475,11 @@ Each player has a ROLE that determines what they perceive:
 No player has the full picture. The mystery only resolves
 when all perspectives combine in the finale.
 
+This game runs at whatever pace fits your group. Rounds can
+take minutes, hours, or days. You don't need to be available
+all the time — use /rest to close a session for the day, and
+/save to pick up later in a fresh chat. The story waits.
+
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ▸ NEXT STEP
   1. Type:  /players [count] [name1, name2, ...]
@@ -644,6 +649,11 @@ Here's how it works:
   • At the end, the pieces come together.
 
 There are no wrong answers. Just your choices.
+
+⏳ This game runs at its own pace. Rounds can take
+   minutes, hours, or days — there's no rush. Your GM
+   might not always respond immediately, and that's fine.
+   The story waits for everyone. Take your time.
 
 🌍 You can play in your own language.
    Tell us your preference in your first DM.

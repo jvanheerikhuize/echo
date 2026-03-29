@@ -158,10 +158,19 @@ After the finale, type `/end`. E.C.H.O. generates:
 
 Send each player their report via DM. It's the complete debrief.
 
+## Pacing
+
+This game is designed to run at whatever pace works for you and your group. A round can resolve in 10 minutes or stretch across a day. You don't need to be glued to the screen.
+
+- **You set the tempo.** There's no real-time pressure. Players respond when they're ready, and the next chapter generates only when everyone has.
+- **Use `/rest` to close a day.** It generates a time-aware story beat for the group channel, signaling that the game pauses until tomorrow. The narrative reflects the gap.
+- **Use `/save` between sessions.** If your game spans multiple days or you need to switch devices, `/save` exports everything. `/load` in a fresh session picks up where you left off — the story acknowledges elapsed time.
+- **Use `/pulse` to keep energy.** If a round is taking long, post a pulse to the group. It's an in-story progress update that reminds players the story is alive without pressuring them.
+- **Don't apologize for delays.** The group welcome message already tells players the game runs at its own pace. They know.
+
 ## Tips
 
-- **Don't rush rounds.** The synchronized model means slower players hold up faster ones. Use `/hint` for stuck players, `/pulse` to keep energy.
+- **Use `/hint` for stuck players.** It sends a role-appropriate nudge without spoiling anything.
 - **Use `/state` liberally.** Understanding the internal state helps you time the convergence and pace the reveals.
 - **Share images.** The image prompts are always there — generating and sharing them adds a lot to the experience.
 - **Let the mystery breathe.** The plot is designed to unfold through player decisions. Don't over-explain in the group channel.
-- **Save between sessions.** If your game spans multiple days, `/save` at the end of each session and `/load` at the start of the next. The narrative will acknowledge the gap.

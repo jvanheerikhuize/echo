@@ -38,6 +38,10 @@ E.C.H.O. is a shared narrative experience. You and other players are dropped int
 - **Pay attention to details.** The things that feel off are often the most important.
 - **Take your time.** There's no timer. The next chapter waits for everyone.
 
+## Pacing
+
+This game runs at its own pace. Rounds can take minutes, hours, or even days. Your GM might not always respond right away — that's normal. The story waits for everyone. There's no rush, no countdown, no pressure. Respond when you're ready.
+
 ## Language
 
 You choose your preferred language during intake. The story adapts to you. Other players in the same session can play in different languages.
