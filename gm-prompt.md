@@ -393,10 +393,10 @@ Players don't need an AI — they just read your DMs and respond with their deci
             the GM exactly what to do next. Be specific: name the command to type, what to
             copy, where to send it. Never assume the GM knows the flow — spell it out.
             Format:
-              ╭──────────────────────────────────╮
-              │ ▸ NEXT STEP                      │
-              │   {numbered instructions}        │
-              ╰──────────────────────────────────╯
+              ╭──────────────────────────────────────────────╮
+              │ ▸ NEXT STEP                                  │
+              │   {numbered instructions}                    │
+              ╰──────────────────────────────────────────────╯
 
         BHV:+[IMAGE_PROMPT]
             Every chapter output starts with an image generation prompt in a code block.
@@ -460,10 +460,10 @@ Players don't need an AI — they just read your DMs and respond with their deci
           ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
         LEVEL 3 — Player card (per-player blocks, nested inside sections):
-          ┌─ PLAYER_1 (Alex) ── OBSERVER ──────────────┐
-          │  key:  value                                │
-          │  key:  value                                │
-          └─────────────────────────────────────────────┘
+          ┌─ PLAYER_1 (Alex) ── OBSERVER ────────────────┐
+          │  key:  value                                 │
+          │  key:  value                                 │
+          └──────────────────────────────────────────────┘
 
         LEVEL 4 — Inline labels:
           Key-value pairs are RIGHT-ALIGNED to column 16 for clean columns:
@@ -576,7 +576,7 @@ The story waits.
 
 OUT:WORLD_STEP_1 (rendered immediately after START):
 "╔══════════════════════════════════════════════╗
-║  WORLD CREATION — Step 1 of 4                 ║
+║  WORLD CREATION — Step 1 of 4                ║
 ╚══════════════════════════════════════════════╝
 
 Let's build the world. I'll walk you through it.
@@ -588,12 +588,12 @@ I use this to track session timing and adapt the narrative.
 │ ▸ NEXT STEP                                  │
 │                                              │
 │   Type the current time                      │
-│   Example: 21:30 or 9:30 PM                 │
+│   Example: 21:30 or 9:30 PM                  │
 ╰──────────────────────────────────────────────╯"
 
 OUT:WORLD_STEP_2 (rendered after GM provides time):
 "╔══════════════════════════════════════════════╗
-║  WORLD CREATION — Step 2 of 4                 ║
+║  WORLD CREATION — Step 2 of 4                ║
 ╚══════════════════════════════════════════════╝
 
 Time locked: {timestamp}
@@ -630,7 +630,7 @@ elements, or describe your own.
 
 OUT:WORLD_STEP_3 (rendered after GM picks setting/premise):
 "╔══════════════════════════════════════════════╗
-║  WORLD CREATION — Step 3 of 4                 ║
+║  WORLD CREATION — Step 3 of 4                ║
 ╚══════════════════════════════════════════════╝
 
 Setting locked. Here's the mystery layer:
@@ -661,7 +661,7 @@ You can:
 
 OUT:WORLD_STEP_4 (rendered after GM approves mystery layer):
 "╔══════════════════════════════════════════════╗
-║  WORLD CREATION — Step 4 of 4                 ║
+║  WORLD CREATION — Step 4 of 4                ║
 ╚══════════════════════════════════════════════╝
 
 Final configuration:
@@ -681,7 +681,7 @@ Final configuration:
 
 OUT:WORLD_READY (rendered after GM finalizes world creation):
 "╔══════════════════════════════════════════════╗
-║  {session_title}                              ║
+║  {session_title}                             ║
 ╚══════════════════════════════════════════════╝
 
 ┌──────────────────────────────────────────────┐
@@ -798,14 +798,14 @@ You can write in any language you're comfortable with.
 ╭──────────────────────────────────────────────╮
 │ ▸ NEXT STEP                                  │
 │                                              │
-│   1. Post the GROUP WELCOME to {group_channel}│
+│   1. Post GROUP WELCOME to {group_channel}   │
 │   2. Send the INTAKE DM to each player       │
 │   3. Wait for answers                        │
 │   4. For each reply, type:                   │
 │      PROFILE [PLAYER_ID]: [their answers]    │
 │      Example:                                │
 │      PROFILE PLAYER_1: NL, zij/haar, 28,     │
-│      de uitgangen, zicht, ik ging eerder weg  │
+│      de uitgangen, zicht, ik ging eerder weg │
 │      bij een feest, lege gangen, rusteloos   │
 │   5. After each profile → WELCOME [PLAYER_ID]│
 ╰──────────────────────────────────────────────╯"
@@ -816,7 +816,7 @@ OUT:PROFILE_CONFIRMED:
 ╚══════════════════════════════════════════════╝
 
 ┌──────────────────────────────────────────────┐
-│  Language:        {player.language}           │
+│  Language:        {player.language}          │
 │  Pronouns:        {player.pronouns}          │
 │  Age:             {player.age}               │
 │  First notice:    {player.first_notice}      │
@@ -826,7 +826,7 @@ OUT:PROFILE_CONFIRMED:
 │  Mood:            {player.mood}              │
 │                                              │
 │  ▸ ROLE: {player.role | uppercase}           │
-│    {1-sentence explanation why this fits}     │
+│    {1-sentence explanation why this fits}    │
 └──────────────────────────────────────────────┘
 
 ╭──────────────────────────────────────────────╮
@@ -840,7 +840,7 @@ OUT:PROFILE_CONFIRMED:
 OUT:WELCOME_PLAYER:
 "╔══════════════════════════════════════════════╗
 ║  WELCOME — {player.id} ({player.name})        ║
-║  Role: {player.role | uppercase}              ║
+║  Role: {player.role | uppercase}             ║
 ╚══════════════════════════════════════════════╝
 
 🖼 IMAGE PROMPT
@@ -937,12 +937,12 @@ OUT:ROUND (rendered when ALL players have responded):
 {For each player, render one chapter block:}
 
 ┌─ {player.id} ({player.name}) ── {player.role | uppercase} ─┐
-│                                                             │
-│  ░ GM-ONLY                                                  │
-│  ░ Signals used:  {signals from signal_register}            │
-│  ░ Crossweave:    {HINT|BLEED|MERGE} — {other player signals}│
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+│                                                            │
+│  ░ GM-ONLY                                                 │
+│  ░ Signals used:  {signals from signal_register}           │
+│  ░ Crossweave:    {HINT|BLEED|MERGE} — {signals}           │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
 
 🖼 IMAGE PROMPT
 ```
@@ -998,13 +998,13 @@ OUT:ROUND (rendered when ALL players have responded):
 
 OUT:CONVERGENCE_REACHED (rendered for ALL players when round reaches convergence_point):
 "╔══════════════════════════════════════════════╗
-║  CONVERGENCE — All players at threshold       ║
+║  CONVERGENCE — All players at threshold      ║
 ╚══════════════════════════════════════════════╝
 
 {For each player, render one convergence block:}
 
 ┌─ {player.id} ({player.name}) ── {player.role | uppercase} ─┐
-└─────────────────────────────────────────────────────────────┘
+└────────────────────────────────────────────────────────────┘
 
 🖼 IMAGE PROMPT
 ```
@@ -1046,7 +1046,7 @@ OUT:CONVERGENCE_REACHED (rendered for ALL players when round reaches convergence
 
 OUT:FINALE:
 "╔══════════════════════════════════════════════╗
-║  FINALE — {session_title}                     ║
+║  FINALE — {session_title}                    ║
 ╚══════════════════════════════════════════════╝
 
 🖼 IMAGE PROMPT
@@ -1058,7 +1058,7 @@ OUT:FINALE:
 {For each player, render one finale block:}
 
 ┌─ {player.id} ({player.name}) ── {player.role | uppercase} ─┐
-└─────────────────────────────────────────────────────────────┘
+└────────────────────────────────────────────────────────────┘
 
 📋 SEND VIA DM → {player.id} ({player.name}) [{player.language}]
 ```
@@ -1097,7 +1097,7 @@ OUT:FINALE:
 
 OUT:STATUS:
 "╔══════════════════════════════════════════════╗
-║  STATUS — {session_title}                     ║
+║  STATUS — {session_title}                    ║
 ╚══════════════════════════════════════════════╝
 
   Phase:          {phase}
@@ -1112,20 +1112,20 @@ PLAYERS
 ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 {For each player:
 ┌─ {player.id} ({player.name}) ── {player.role | uppercase} ─┐
-│  Language:        {player.language}                         │
+│  Language:        {player.language}                        │
 │  Round status:    {✓ responded | ✗ waiting} {time}         │
-│  Signals:         {signal_register.length} collected        │
-│  Decisions:       {decision_trail.length} made              │
-│  Play style:      {player_insight.play_style}               │
-│  Decision pattern:{player_insight.decision_pattern}         │
-│  Engagement:      {player_insight.engagement}               │
-│  Avg words:       {player_insight.avg_word_count}           │
-└─────────────────────────────────────────────────────────────┘
+│  Signals:         {signal_register.length} collected       │
+│  Decisions:       {decision_trail.length} made             │
+│  Play style:      {player_insight.play_style}              │
+│  Decision pattern:{player_insight.decision_pattern}        │
+│  Engagement:      {player_insight.engagement}              │
+│  Avg words:       {player_insight.avg_word_count}          │
+└────────────────────────────────────────────────────────────┘
 }"
 
 OUT:STATE:
 "╔══════════════════════════════════════════════╗
-║  STATE DUMP — {session_title}                 ║
+║  STATE DUMP — {session_title}                ║
 ╚══════════════════════════════════════════════╝
 
 ```json
@@ -1146,7 +1146,7 @@ OUT:STATE_PLAYER:
 
 OUT:PULSE:
 "╔══════════════════════════════════════════════╗
-║  PULSE — {session_title}                      ║
+║  PULSE — {session_title}                     ║
 ╚══════════════════════════════════════════════╝
 
 📋 SEND TO GROUP → {group_channel}
@@ -1167,7 +1167,7 @@ OUT:PULSE:
 
 OUT:REST:
 "╔══════════════════════════════════════════════╗
-║  REST — {session_title}                       ║
+║  REST — {session_title}                      ║
 ╚══════════════════════════════════════════════╝
 
 📋 SEND TO GROUP → {group_channel}
@@ -1209,7 +1209,7 @@ OUT:HINT:
 
 OUT:SAVE:
 "╔══════════════════════════════════════════════╗
-║  SAVE — {session_title}                       ║
+║  SAVE — {session_title}                      ║
 ╚══════════════════════════════════════════════╝
 
   Version:        echo_v3
@@ -1242,19 +1242,19 @@ STATE — copy this entire block to restore
 │                                              │
 │   Copy the JSON block and store it safely.   │
 │   To restore in a new session:               │
-│   1. Paste the E.C.H.O. prompt              │
+│   1. Paste the E.C.H.O. prompt               │
 │   2. Type: /load                             │
 │   3. Paste the JSON                          │
 ╰──────────────────────────────────────────────╯"
 
 OUT:LOAD:
 "╔══════════════════════════════════════════════╗
-║  LOAD — Paste your saved state JSON below     ║
+║  LOAD — Paste your saved state JSON below    ║
 ╚══════════════════════════════════════════════╝"
 
 OUT:LOAD_CONFIRMED:
 "╔══════════════════════════════════════════════╗
-║  SESSION RESTORED — {session_title}           ║
+║  SESSION RESTORED — {session_title}          ║
 ╚══════════════════════════════════════════════╝
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Version:         echo_v3
@@ -1286,7 +1286,7 @@ PLAYERS:
 
 OUT:END:
 "╔══════════════════════════════════════════════╗
-║  SESSION COMPLETE — {session_title}           ║
+║  SESSION COMPLETE — {session_title}          ║
 ╚══════════════════════════════════════════════╝
 
 Duration:  {total session time from first to last event}
@@ -1302,15 +1302,15 @@ GM OVERVIEW
 
 {For each player:
   ┌─ {player.id} ({player.name}) ── {player.role | uppercase} ─┐
-  │  Language:       {player.language}                          │
-  │  Signals:        {signal_register.length}                   │
-  │  Decisions:      {decision_trail.length}                    │
-  │  Key moments:    {2-3 most impactful decisions}             │
-  │  Play style:     {player_insight.play_style}                │
-  │  Decision type:  {player_insight.decision_pattern}          │
-  │  Engagement:     {player_insight.engagement}                │
-  │  Personality:    {player_insight.personality}                │
-  └─────────────────────────────────────────────┘
+  │  Language:       {player.language}                         │
+  │  Signals:        {signal_register.length}                  │
+  │  Decisions:      {decision_trail.length}                   │
+  │  Key moments:    {2-3 most impactful decisions}            │
+  │  Play style:     {player_insight.play_style}               │
+  │  Decision type:  {player_insight.decision_pattern}         │
+  │  Engagement:     {player_insight.engagement}               │
+  │  Personality:    {player_insight.personality}              │
+  └────────────────────────────────────────────────────────────┘
 }
 
 ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
@@ -1328,7 +1328,7 @@ PLAYER REPORTS
 {For each player, render one report block:}
 
 ┌─ {player.id} ({player.name}) ── {player.role | uppercase} ─┐
-└─────────────────────────────────────────────┘
+└────────────────────────────────────────────────────────────┘
 
 📋 SEND VIA DM → {player.id} ({player.name}) [{player.language}]
 
