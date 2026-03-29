@@ -1,12 +1,12 @@
-# E.C.H.O. — Experiential Collaborative Hub Orchestrator
+# E.C.H.O.
 
-An immersive multiplayer narrative experience for 2-6 players, powered by any advanced LLM. Built around mystery, roles, and decisions.
+**Experiential Collaborative Hub Orchestrator**
 
-Players are assigned roles — Observer, Listener, Keeper, or Anchor — each perceiving a different slice of the same reality. A mystery unfolds through their choices. No one has the full picture alone. The answer only assembles when all perspectives combine.
+An immersive multiplayer narrative experience for 2-6 players, powered by any advanced LLM.
 
-## How It Works
+---
 
-E.C.H.O. uses a **single-LLM architecture**. One person acts as Game Master (GM) and runs the prompt. Players don't need AI — they read DMs from the GM, make decisions, and respond. The GM relays their choices to the LLM, which generates the next chapter with consequences.
+Players are assigned roles — **Observer**, **Listener**, **Keeper**, or **Anchor** — each perceiving a different slice of the same reality. A mystery unfolds through their choices. No one has the full picture alone. The answer only assembles when all perspectives combine.
 
 ```
                  ┌──────────────────────┐
@@ -25,26 +25,22 @@ E.C.H.O. uses a **single-LLM architecture**. One person acts as Game Master (GM)
    └──────────────┘ └──────────────┘ └──────────────┘
 ```
 
+One person runs the prompt as **Game Master**. Players don't need AI — they read DMs, make decisions, and respond. The GM relays their choices. The LLM generates the next chapter with consequences.
+
 ## Quick Start
 
-1. Copy the prompt from the code block in [`prompt.md`](prompt.md).
-2. Paste it into a fresh LLM session (Claude, ChatGPT, Gemini). This is the **GM session**.
-3. Configure: `/players 3 Alex, Sam, Jordan` and optionally `/theme` and `/turns`.
-4. Type `START`. E.C.H.O. generates a titled world with a mystery.
-5. DM the intake questions to each player. They respond with their answers.
-6. Register each player: `PROFILE PLAYER_1: English, she/her, 28, I notice the exits, sight, ...`
-7. E.C.H.O. assigns a role. Generate welcome: `WELCOME PLAYER_1`. Send via DM.
-8. Players read their chapter, face a decision, and respond with their choice.
-9. Relay each response: `ACTION PLAYER_1: I took the notebook`.
-10. When ALL players have responded, E.C.H.O. generates the next chapter for everyone.
-11. Send each player their personal chapter via DM. Repeat from step 8.
-12. At the convergence point, type `/finale` for the shared ending.
+1. Copy the prompt from the code block in [`prompt.md`](prompt.md)
+2. Paste into a fresh LLM session (Claude, ChatGPT, Gemini)
+3. `/players 3 Alex, Sam, Jordan` — register players
+4. `START` — a titled world with a mystery is generated
+5. DM the intake questions to each player
+6. `PROFILE PLAYER_1: [answers]` — register and assign roles
+7. `WELCOME PLAYER_1` — send personalized welcome via DM
+8. Players read, decide, respond. Relay with `ACTION PLAYER_1: [choice]`
+9. All players responded → next chapter generates for everyone
+10. `/finale` at convergence → the mystery resolves
 
-## Core Mechanics
-
-### Roles
-
-Each player is assigned a role based on their intake answers. Roles determine what you perceive and what decisions you face:
+## Roles
 
 | Role | Perceives | Decides on |
 |------|-----------|------------|
@@ -53,65 +49,72 @@ Each player is assigned a role based on their intake answers. Roles determine wh
 | **Keeper** | Objects, textures, mechanisms, traces, tools | What to take, use, or leave behind |
 | **Anchor** | Atmosphere, temperature, instinct, timing | When to act, wait, or warn |
 
-### Decisions, Not Feelings
+Roles are assigned automatically based on intake answers. The GM can override.
 
-Each chapter ends with a concrete, role-appropriate choice. Your decisions have consequences that shape the next chapter. The Observer chooses which corridor to investigate. The Listener decides whether to trust the recording. The Keeper picks which object to take. Every choice matters.
+## How Decisions Work
 
-### Signal Register & Crossweave
+Each chapter ends with a concrete, role-appropriate choice. The Observer picks which corridor to investigate. The Listener decides whether to trust the recording. The Keeper chooses which object to take. Every choice has consequences that shape the next chapter.
 
-After each decision, E.C.H.O. extracts signals — sensory details and decision outcomes — and stores them in a **signal register** per player. These signals progressively bleed into other players' realities:
+After each decision, E.C.H.O. extracts **signals** — sensory details and decision outcomes — and stores them per player. These signals progressively bleed into other players' realities through **crossweave**:
 
-- **Early (HINT):** "Someone else has been here. The dust is disturbed."
-- **Middle (BLEED):** Unexplained clues from other players' decisions appear in your scene.
-- **Late (MERGE):** Other players' choices directly affect your reality.
-- **Finale (REVEAL):** All signals converge. The mystery resolves. Names appear for the first time.
+| Phase | Effect |
+|-------|--------|
+| **HINT** | Other players referenced as distant presences |
+| **BLEED** | Unexplained clues from others' decisions appear in your scene |
+| **MERGE** | Others' choices directly affect your reality |
+| **REVEAL** | All signals converge — the mystery resolves, names appear |
 
-### Mystery Plot
+## Features
 
-Every session is built around a central mystery with real stakes. The plot follows a narrative arc — discovery, complication, revelation, resolution — not an emotional mood trajectory. Each session gets a unique title tied to its specific story.
-
-### Multilingual
-
-All internal systems are English. Player-facing narrative renders in each player's chosen language. Different players in the same session can play in different languages.
+- **Mystery-driven plot** with a narrative arc and real stakes
+- **Unique session title** generated for each game
+- **Multilingual** — each player chooses their language; internals are English
+- **Image prompts** on every chapter, copy-pasteable into any image generator
+- **Timestamps** on every action — narrative reflects real elapsed time
+- **Persistent state** — `/save` and `/load` for zero-loss session transfer
+- **Raw state access** — `/state` dumps the full engine state as JSON
+- **Synchronized rounds** — all players advance together
 
 ## GM Commands
 
 | Command | Description |
 |---------|-------------|
 | `/players [2-6] [names]` | Register players |
-| `/theme [text]` | Set a theme (optional — auto-generated if omitted) |
-| `/turns [N]` | Set max turns per player (optional) |
-| `START` | Generate the world and title |
-| `PROFILE [ID]: [answers]` | Register a player's profile and assign role |
-| `WELCOME [ID]` | Generate a player's welcome message |
+| `/theme [text]` | Set a theme (optional) |
+| `/turns [N]` | Set max turns per player |
+| `START` | Generate the world |
+| `PROFILE [ID]: [answers]` | Register profile, assign role |
+| `WELCOME [ID]` | Generate personalized welcome |
 | `ACTION [ID]: [text]` | Relay a player's decision |
-| `/status` | View session status, player insights, timing |
-| `/state` | Dump full raw state as JSON |
-| `/state [ID]` | Dump a single player's state |
-| `/pulse` | In-story progress update for the group |
-| `/rest` | Day-closing story beat for the group |
-| `/hint [ID]` | Send a nudge to a stuck player |
-| `/save` | Export complete state for session transfer |
-| `/load` | Import a saved state into a new session |
+| `/status` | Session status and player insights |
+| `/state` | Full raw state dump (JSON) |
+| `/state [ID]` | Single player state dump |
+| `/pulse` | In-story group progress update |
+| `/rest` | Day-closing story beat |
+| `/hint [ID]` | Nudge a stuck player |
+| `/save` | Export state for session transfer |
+| `/load` | Import saved state |
 | `/finale` | Trigger the shared ending |
 | `/end` | End session with summary |
 
-## Player Experience
+## Documentation
 
-Players don't need commands or AI. They:
-1. Answer intake questions (language, pronouns, perception style, instinct, etc.)
-2. Receive a role assignment and personalized welcome
-3. Read each chapter — a scene filtered through their role
-4. Make a decision at the end of each chapter
-5. Respond with their choice (a sentence, a word, whatever feels right)
+| File | Description |
+|------|-------------|
+| [`prompt.md`](prompt.md) | The complete prompt — copy and paste into any LLM |
+| [`gm-guide.md`](gm-guide.md) | Detailed guide for Game Masters |
+| [`player-guide.md`](player-guide.md) | Quick reference for players |
 
-Every decision shapes what happens next. There are consequences.
+## Requirements
 
-## Guides
+- Any advanced LLM chat interface (Claude, ChatGPT, Gemini, etc.)
+- A messaging platform for DMs (Discord, WhatsApp, Signal, etc.)
+- 2-6 players + 1 Game Master
 
-- [`gm-guide.md`](gm-guide.md) — Detailed guide for Game Masters
-- [`player-guide.md`](player-guide.md) — Quick guide for players
+## License
 
-## Credits
+[MIT](LICENSE)
 
-Based on E.C.H.O. v1.0 by Jerry van Heerikhuize.
+## Author
+
+Jerry van Heerikhuize

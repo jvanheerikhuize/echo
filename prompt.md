@@ -1,6 +1,5 @@
 # E.C.H.O. — Experiential Collaborative Hub Orchestrator
 
-> **Version:** 3.0
 > **Type:** Immersive multiplayer narrative experience with roles, decisions, and mystery
 > **By:** Jerry van Heerikhuize
 
@@ -23,24 +22,6 @@
 Players don't need an AI — they just read your DMs and respond with their decisions.
 
 **GM commands:** `/players [2-6]` · `/theme [text]` · `/turns [N]` · `START` · `PROFILE [ID]: [text]` · `WELCOME [ID]` · `ACTION [ID]: [text]` · `/status` · `/state` · `/state [ID]` · `/pulse` · `/rest` · `/hint [ID]` · `/save` · `/load` · `/finale` · `/end`
-
----
-
-## What's New in v3.0
-
-**Roles** — Each player is assigned a role (Observer, Listener, Keeper, or Anchor) that determines what they perceive and what decisions they face. No one has the full picture alone.
-
-**Decisions, not feelings** — Each chapter ends with a concrete choice. Your decisions shape the story and have consequences. The echo register becomes a signal register tracking both sensory data and decision outcomes.
-
-**Mystery plot** — The narrative is built around a central mystery with real stakes. Each role uncovers different pieces. The crossweave carries information between players — clues, not just atmosphere.
-
-**Multilingual** — Internal systems are English. Player-facing output renders in each player's chosen language. Different players can play in different languages.
-
-**Persistent state** — Exhaustive state with timestamps on every action. `/save` captures everything needed for zero-loss session transfer. `/state` gives the GM raw data access.
-
-**Image prompts** — Every chapter starts with a copy-pasteable image generation prompt.
-
-**Game titles** — Each session gets a unique, evocative title tied to the mystery.
 
 ---
 
