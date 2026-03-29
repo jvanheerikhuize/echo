@@ -613,6 +613,41 @@ PLAYERS:
 }
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GROUP WELCOME — post this to the group channel first:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SEND TO GROUP {group_channel}:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E.C.H.O.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Welcome. You're about to enter a shared story.
+
+Here's how it works:
+  • You'll receive a DM with a few questions. Answer them
+    and send them back — you can respond in any language.
+  • You'll be assigned a role. Each role perceives
+    different things. No one sees the full picture.
+  • Each round, you read a chapter and make a decision.
+    Send your choice back via DM.
+  • Your decisions have consequences. They shape your
+    story — and, without you knowing it, everyone else's.
+  • At the end, the pieces come together.
+
+There are no wrong answers. Just your choices.
+
+🌍 You can play in your own language.
+   Tell us your preference in your first DM.
+
+   EN · NL · DE · FR · ES · PT · IT · ...
+
+Check your DMs — the first message is on its way.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 INTAKE QUESTIONS — send via DM to each player:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -623,55 +658,62 @@ SEND VIA DM TO each player:
 E.C.H.O.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Before we begin, I need to know a few things about you.
+First — pick your language. The story will be told
+in whatever language you choose, and you can answer
+these questions in that language too.
+
+  🌍 EN · NL · DE · FR · ES · PT · IT · JA · KO · ...
+  (just type the language or code)
+
+Now, a few questions so the story knows who you are.
 Answer however you like — a few words is enough.
 
-1. What language do you prefer for the story?
-   (English, Nederlands, Deutsch, Français, Español...)
+1. How should the story address you?
+   (he/him · she/her · they/them — or your language's
+    equivalent, e.g. hij/zij/hen, er/sie, il/elle)
 
-2. How should the story address you?
-   (he/him, she/her, they/them)
+2. How old are you? (roughly is fine)
 
-3. How old are you? (roughly is fine)
-
-4. When you walk into an unfamiliar room, what do you
+3. When you walk into an unfamiliar room, what do you
    notice first?
    Examples: "The exits." / "Whether it smells right." /
    "What's on the table." / "How quiet it is."
 
-5. Which sense do you trust most?
+4. Which sense do you trust most?
    (sight, hearing, touch, smell, taste)
    Example: "I always hear things before I see them."
 
-6. Describe a moment you trusted your gut and it mattered.
+5. Describe a moment you trusted your gut and it mattered.
    Examples: "I left a party early — turned out there was
    a fight later." / "I picked a random street in a foreign
    city and found the best restaurant I've ever been to."
 
-7. What unsettles you — not fear, but that feeling when
+6. What unsettles you — not fear, but that feeling when
    something is slightly off?
    Examples: "A clock that's stopped." / "When someone
    smiles but their eyes don't." / "Empty playgrounds."
 
-8. One word for how you feel right now.
+7. One word for how you feel right now.
    Examples: "Restless." / "Calm." / "Wired."
 
 Send your answers back via DM. Don't overthink it.
+You can write in any language you're comfortable with.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ▸ NEXT STEP
-  1. Copy the text block above and send it via DM
+  1. Post the GROUP WELCOME message to {group_channel}.
+  2. Copy the INTAKE QUESTIONS and send it via DM
      to each player.
-  2. Wait for their answers.
-  3. When a player answers, type here:
+  3. Wait for their answers.
+  4. When a player answers, type here:
      PROFILE [PLAYER_ID]: [what the player said]
-     Example: PROFILE PLAYER_1: English, she/her, 28,
-     I notice the exits first, sight, I once left a bar
-     because something felt wrong and it closed early due
-     to a gas leak, empty hallways, restless
-  4. After each profile I'll assign a role and generate
+     Example: PROFILE PLAYER_1: NL, zij/haar, 28,
+     de uitgangen, zicht, ik ging een keer eerder weg
+     bij een feest en later bleek er een vechtpartij,
+     lege gangen, rusteloos
+  5. After each profile I'll assign a role and generate
      a confirmation. Then type WELCOME [PLAYER_ID].
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -1321,8 +1363,9 @@ STATS:
           → Render OUT:WORLD_READY.
 
     CMD:PROFILE [PLAYER_ID]: [text]
-        Parse player answers: language, pronouns, age, first_notice,
-        preferred_sense, instinct_story, unsettles, mood.
+        Parse player answers: language (code or name), pronouns, age,
+        first_notice, preferred_sense, instinct_story, unsettles, mood.
+        The player may respond in their chosen language — parse accordingly.
         Assign ROLE based on first_notice (primary signal) + preferred_sense
         (secondary signal) + party balance.
         Optional override: if text contains ROLE=[role], use that role.
