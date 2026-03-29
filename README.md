@@ -11,7 +11,7 @@ Players are assigned roles — **Observer**, **Listener**, **Keeper**, or **Anch
 ```
                  ┌──────────────────────┐
                  │   GM's LLM Session   │
-                 │   loads: prompt.md    │
+                 │   loads: gm-prompt.md    │
                  │   sees: everything    │
                  └──────────┬───────────┘
                             │
@@ -29,16 +29,17 @@ One person runs the prompt as **Game Master**. Players don't need AI — they re
 
 ## Quick Start
 
-1. Copy the prompt from the code block in [`prompt.md`](prompt.md)
+1. Copy the prompt from the code block in [`gm-prompt.md`](gm-prompt.md)
 2. Paste into a fresh LLM session (Claude, ChatGPT, Gemini)
 3. `/players 3 Alex, Sam, Jordan` — register players
-4. `START` — a titled world with a mystery is generated
+4. `START` — guided world creation: pick a setting, shape the mystery, set the pace
 5. DM the intake questions to each player
 6. `PROFILE PLAYER_1: [answers]` — register and assign roles
 7. `WELCOME PLAYER_1` — send personalized welcome via DM
 8. Players read, decide, respond. Relay with `ACTION PLAYER_1: [choice]`
 9. All players responded → next chapter generates for everyone
 10. `/finale` at convergence → the mystery resolves
+11. `/end` → every player receives a personal game report via DM
 
 ## Roles
 
@@ -74,6 +75,8 @@ After each decision, E.C.H.O. extracts **signals** — sensory details and decis
 - **Persistent state** — `/save` and `/load` for zero-loss session transfer
 - **Raw state access** — `/state` dumps the full engine state as JSON
 - **Synchronized rounds** — all players advance together
+- **Guided world creation** — pick from generated settings, shape the mystery, set the pace
+- **Post-game reports** — every player gets a personal debrief: their decisions, their impact, the full picture
 
 ## GM Commands
 
@@ -101,7 +104,7 @@ After each decision, E.C.H.O. extracts **signals** — sensory details and decis
 
 | File | Description |
 |------|-------------|
-| [`prompt.md`](prompt.md) | The complete prompt — copy and paste into any LLM |
+| [`gm-prompt.md`](gm-prompt.md) | The complete GM prompt — copy and paste into any LLM |
 | [`gm-guide.md`](gm-guide.md) | Detailed guide for Game Masters |
 | [`player-guide.md`](player-guide.md) | Quick reference for players |
 

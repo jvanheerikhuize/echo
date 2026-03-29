@@ -13,14 +13,18 @@ This guide covers everything you need to run an E.C.H.O. session. You are the br
 
 ### Starting a Session
 
-1. Copy the full prompt from the code block in `prompt.md`.
+1. Copy the full prompt from the code block in `gm-prompt.md`.
 2. Paste it into a fresh LLM session. E.C.H.O. will greet you.
 3. Register players: `/players 4 Alex, Sam, Jordan, Riley`
 4. Optionally set a theme: `/theme abandoned research station` (or let E.C.H.O. generate one)
 5. Optionally set turn limits: `/turns 5`
-6. Type `START`. E.C.H.O. generates a world, a mystery, and a unique title.
+6. Type `START`. E.C.H.O. walks you through world creation in 4 steps:
+   - **Step 1:** Provide the current time (timestamp baseline)
+   - **Step 2:** Pick a setting — choose from 3 generated options, combine elements, or describe your own
+   - **Step 3:** Review the mystery layer (atmosphere, sensory anchor, central question, stakes, arc) — approve, adjust, or regenerate
+   - **Step 4:** Confirm chapter count
 
-E.C.H.O. will ask you for the current time — this establishes the timestamp baseline for the session.
+You're in control of the world. E.C.H.O. proposes, you decide.
 
 ### Player Intake
 
@@ -136,6 +140,23 @@ The finale:
 - Weaves every player's signals and decisions into one resolution
 - Delivers a personalized version to each player in their language
 - Posts a shared version to the group channel
+
+## Post-Game Reports
+
+After the finale, type `/end`. E.C.H.O. generates:
+
+**For you (GM):** A full session overview — mystery, answer, per-player stats, crossweave summary.
+
+**For each player (via DM):** A personal game report in their language, covering:
+- Their role and what made their contribution unique
+- Every decision they made and its consequence, told as narrative
+- Their collected signals
+- Which of their decisions bled into other players' realities (now revealed)
+- Which unexplained details in their chapters came from other players (now explained)
+- The full picture — how their piece fit into the mystery's resolution
+- Their stats (chapters, decisions, signals, play style, avg response length)
+
+Send each player their report via DM. It's the complete debrief.
 
 ## Tips
 

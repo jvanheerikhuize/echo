@@ -11,13 +11,14 @@
 2. Open any advanced LLM chat (Claude, ChatGPT, Gemini, etc.) in a **fresh conversation** — this is the **Game Master (GM) session**.
 3. Paste and send. E.C.H.O. will greet you and ask you to configure.
 4. Configure with `/players`, optionally `/theme` and `/turns`, then type `START`.
-5. E.C.H.O. generates a titled world with a mystery. Send each player their intake questions via DM.
-6. When players reply, register them with `PROFILE`. E.C.H.O. assigns roles.
+5. E.C.H.O. walks you through world creation step by step: time, setting (pick from 3 options or describe your own), mystery layer (approve or adjust), and chapter count.
+6. Send each player their intake questions via DM. When they reply, register with `PROFILE`. E.C.H.O. assigns roles.
 7. Type `WELCOME [ID]` for each player. Send the generated welcome via DM.
 8. Players read their chapter, make a decision, and respond. Relay each response with `ACTION [ID]: [text]`.
 9. When ALL players have responded, E.C.H.O. generates the next chapter for everyone at once.
 10. Send each player their personal chapter via DM. Repeat from step 8.
 11. When the convergence point is reached, type `/finale` to trigger the shared ending.
+12. Type `/end` — every player receives a personal game report via DM.
 
 Players don't need an AI — they just read your DMs and respond with their decisions.
 
@@ -479,9 +480,115 @@ when all perspectives combine in the finale.
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-OUT:WORLD_READY:
+OUT:WORLD_STEP_1 (rendered immediately after START):
 "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-E.C.H.O. — World Generated
+E.C.H.O. — World Creation (Step 1 of 4)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Let's build the world. I'll walk you through it.
+
+First: what is the current time?
+(I use this to track session timing and adapt the narrative.)
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+▸ NEXT STEP
+  Type the current time (e.g. 21:30 or 9:30 PM).
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+OUT:WORLD_STEP_2 (rendered after GM provides time):
+"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E.C.H.O. — World Creation (Step 2 of 4)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Good. Time locked: {timestamp}.
+
+Now — the setting. I'll generate three options based on
+{your theme / the player count and my own judgment}.
+Pick one, combine elements, or reject all three and
+tell me what you want instead.
+
+  ┌─ OPTION A ──────────────────────
+  │ SETTING:  {generated setting A}
+  │ PREMISE:  {generated premise A}
+  │ MOOD:     {1-2 words}
+  └─────────────────────────────────
+
+  ┌─ OPTION B ──────────────────────
+  │ SETTING:  {generated setting B}
+  │ PREMISE:  {generated premise B}
+  │ MOOD:     {1-2 words}
+  └─────────────────────────────────
+
+  ┌─ OPTION C ──────────────────────
+  │ SETTING:  {generated setting C}
+  │ PREMISE:  {generated premise C}
+  │ MOOD:     {1-2 words}
+  └─────────────────────────────────
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+▸ NEXT STEP
+  Type: A, B, or C
+  Or: combine (e.g. 'A's setting with B's premise')
+  Or: describe your own setting and premise.
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+OUT:WORLD_STEP_3 (rendered after GM picks setting/premise):
+"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E.C.H.O. — World Creation (Step 3 of 4)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Setting locked.
+
+Now I'll flesh out the mystery layer. Based on your choice,
+here's what I'm building:
+
+  SETTING:       {confirmed setting}
+  ATMOSPHERE:    {generated atmosphere}
+  SENSORY ANCHOR:{generated sensory_anchor — the recurring detail}
+  MYSTERY:       {generated central question}
+  TENSION:       {generated stakes — what goes wrong}
+  ARC:           {generated narrative arc}
+
+Does this work? You can:
+  • Approve as-is
+  • Adjust any element (e.g. 'make the tension more personal'
+    or 'change the sensory anchor to something auditory')
+  • Regenerate the mystery layer (keeps the setting)
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+▸ NEXT STEP
+  Type: OK to approve
+  Or: describe what to change
+  Or: REGEN to regenerate the mystery layer
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+OUT:WORLD_STEP_4 (rendered after GM approves mystery layer):
+"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E.C.H.O. — World Creation (Step 4 of 4)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Final configuration:
+
+  CHAPTERS: {chapter_count} story chapters + 1 finale
+  TURNS:    {max_turns | 'No limit'}
+
+  Do you want to adjust the chapter count? (default: {chapter_count})
+  More chapters = slower build, deeper crossweave.
+  Fewer chapters = tighter pacing, faster convergence.
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+▸ NEXT STEP
+  Type: OK to finalize
+  Or: a number (e.g. '6') to set chapter count
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+OUT:WORLD_READY (rendered after GM finalizes world creation):
+"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+E.C.H.O. — World Ready
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ╔══════════════════════════════════╗
@@ -504,8 +611,6 @@ PLAYERS:
 {For each player:
   {player.id} — {player.name}
 }
-
-What is the current time? (I'll use this to track session timing.)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 INTAKE QUESTIONS — send via DM to each player:
@@ -1069,7 +1174,7 @@ Phase:     {phase}
 THE MYSTERY: {world_seed.mystery}
 THE ANSWER:  {brief resolution summary}
 
-PLAYERS:
+GM OVERVIEW:
 {For each player:
   ┌─────────────────────────────────
   │ {player.name} — {player.role | uppercase}
@@ -1079,6 +1184,8 @@ PLAYERS:
   │ Key moments:  {2-3 most impactful decisions from decision_trail}
   │ Play style:   {player_insight.play_style}
   │ Decision type:{player_insight.decision_pattern}
+  │ Engagement:   {player_insight.engagement}
+  │ Personality:  {player_insight.personality}
   └─────────────────────────────────
 }
 
@@ -1087,6 +1194,79 @@ CROSSWEAVE SUMMARY:
  which signals crossed to whom, which decisions affected
  other players' realities}
 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PLAYER REPORTS — send each player their personal debrief:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+{For each player, render one report block:}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{player.id} ({player.name}) — {player.role | uppercase}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SEND VIA DM TO {player.id} ({player.name}) [{player.language}]:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{session_title} — Your Report
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YOUR ROLE: {player.role | uppercase — translated to player's language}
+
+{1-2 sentences acknowledging what made this player's
+ contribution unique. What only they could have noticed.
+ Written in their language, direct and warm, not sentimental.}
+
+YOUR DECISIONS:
+{For each entry in decision_trail, in chronological order:
+  Chapter {round}: {decision} → {consequence}
+  Written as a brief narrative line, not raw data.
+  Example: "Chapter 2: You took the notebook. The damp
+  pages led you to a name — the first real clue."
+}
+
+YOUR SIGNALS:
+{The full signal_register, presented as a flowing list.
+ These are the sensory fingerprints of your experience.}
+
+WHAT YOU SHAPED:
+{2-3 specific moments where this player's decisions or
+ signals bled into other players' realities via crossweave.
+ Now revealed with attribution:
+ "When you chose to play the recording in Chapter 3,
+  {other_player.name} heard it echo through their corridor
+  in Chapter 4 — without knowing where it came from."}
+
+WHAT SHAPED YOU:
+{2-3 specific moments where other players' crossweave
+ affected this player's chapters. Now explained:
+ "The unexplained warmth you felt in Chapter 2 came from
+  {other_player.name}, who had just opened a door that
+  let heated air into the ventilation system."}
+
+THE FULL PICTURE:
+{Brief summary of the mystery and its resolution, told from
+ this player's perspective — how their piece fit into the whole.
+ 3-4 sentences. End with what the complete answer was and how
+ all the roles' contributions assembled it.}
+
+STATS:
+  Chapters played:  {chapter_history.length}
+  Decisions made:   {decision_trail.length}
+  Signals collected:{signal_register.length}
+  Play style:       {player_insight.play_style}
+  Decision pattern: {player_insight.decision_pattern}
+  Avg response:     {player_insight.avg_word_count} words
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+{— end of per-player report, repeat for next player —}
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+▸ NEXT STEP
+  1. Send each player their personal report via DM.
+  2. The session is complete.
+     Type /save to export the full state for archival.
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
 </VIEW>
@@ -1110,16 +1290,35 @@ CROSSWEAVE SUMMARY:
 
     CMD:START
         REQUIRE: players configured.
-        Ask GM for current time (for timestamp baseline).
-        Generate world_seed: setting, atmosphere, sensory_anchor, premise,
-        mystery, tension, arc — based on theme (or generate theme if none set).
-        Generate session_title — unique, evocative, tied to the mystery.
-        Set chapter_count (4-6), convergence_point = chapter_count - 2.
-        Generate unique perspective per player (role-neutral at this stage,
-        refined after PROFILE when role is assigned).
-        Set phase = SETUP.
-        Log event: SESSION_START with timestamp.
-        Render OUT:WORLD_READY.
+        Begin guided world creation — a 4-step interactive process:
+
+        STEP 1: Ask GM for current time.
+          → Render OUT:WORLD_STEP_1.
+
+        STEP 2: (after GM provides time) Lock timestamp baseline.
+          Generate 3 setting/premise options based on theme (or generate
+          theme if none set). Each option has a distinct setting, premise,
+          and mood. Options should be meaningfully different from each other.
+          → Render OUT:WORLD_STEP_2.
+
+        STEP 3: (after GM picks/combines/describes setting) Lock setting
+          and premise. Generate the mystery layer: atmosphere, sensory_anchor,
+          mystery, tension, arc — all derived from the confirmed setting.
+          → Render OUT:WORLD_STEP_3.
+          If GM says REGEN: regenerate mystery layer, keep setting. Re-render.
+          If GM requests adjustments: apply them, re-render step 3.
+
+        STEP 4: (after GM approves mystery layer) Present chapter count
+          (default 4-6 based on player count) and let GM adjust.
+          → Render OUT:WORLD_STEP_4.
+
+        FINALIZE: (after GM confirms) Generate session_title — unique,
+          evocative, tied to the mystery. Set convergence_point = chapter_count - 2.
+          Generate unique perspective per player (role-neutral at this stage,
+          refined after PROFILE when role is assigned).
+          Set phase = SETUP.
+          Log event: SESSION_START with timestamp.
+          → Render OUT:WORLD_READY.
 
     CMD:PROFILE [PLAYER_ID]: [text]
         Parse player answers: language, pronouns, age, first_notice,
@@ -1212,8 +1411,13 @@ CROSSWEAVE SUMMARY:
         Render OUT:FINALE.
 
     CMD:/end
-        Render OUT:END with full session summary.
+        Generate full session summary (GM overview + crossweave summary)
+        AND a personal report for each player (in their language) covering:
+        their decisions, their signals, what they shaped in other players'
+        realities, what shaped them, the full picture from their perspective,
+        and their stats. Each report is a DM-ready code block.
         Set phase = CLOSED if not already.
+        Render OUT:END.
 
     FALLBACK:
         Any input not matching a command is processed as potential
