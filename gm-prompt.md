@@ -155,6 +155,12 @@ Players don't need an AI — they just read your DMs and respond with their deci
         <STATE_SCHEMA>
 <!-- JSON:BEGIN -->
 DEF:STATE:{
+    "logo": "
+ ███████  ██████ ██   ██  ██████
+ ██      ██      ██   ██ ██    ██
+ █████   ██      ███████ ██    ██
+ ██      ██      ██   ██ ██    ██
+ ███████  ██████ ██   ██  ██████ ",
     "session_id":      "string — unique identifier",
     "session_title":   "string — unique evocative title for this game, generated at START",
     "phase":           "SETUP | ACTIVE | CONVERGING | FINALE | CLOSED",
@@ -307,7 +313,13 @@ DEF:STATE:{
 
         <TEMPLATES>
 
-            <WELCOME params="how_it_works, roles_summary, pacing, next_step">
+            <WELCOME params="logo, how_it_works, roles_summary, pacing, next_step">
+                 ███████  ██████ ██   ██  ██████
+                 ██      ██      ██   ██ ██    ██
+                 █████   ██      ███████ ██    ██
+                 ██      ██      ██   ██ ██    ██
+                 ███████  ██████ ██   ██  ██████
+
                 ╔══════════════════════════════════════════════
                 ║   E.C.H.O. — Ready
                 ╚══════════════════════════════════════════════
