@@ -26,6 +26,24 @@ This guide covers everything you need to run an E.C.H.O. session. You are the br
 
 You're in control of the world. E.C.H.O. proposes, you decide.
 
+### Recruiting Players (Public Games)
+
+Want to run E.C.H.O. as a public game with strangers? Use `/recruit` to generate a printable flyer with a QR code that points to your messaging group.
+
+1. Create a WhatsApp (or Signal/Discord) group for the game
+2. Copy the group invite link
+3. In your E.C.H.O. session: `/recruit https://chat.whatsapp.com/your-link`
+4. E.C.H.O. asks for a **closing date** — the deadline for people to join
+5. Write a **custom message** for the flyer (or let E.C.H.O. generate one)
+6. E.C.H.O. gives you:
+   - A **QR code URL** — open it, save/print the QR image
+   - A **printable flyer** — print it, paste the QR code in the marked area
+7. Place the flyer in a public spot (cafe, office, campus, bar)
+8. When the closing date arrives, check who joined the group
+9. Register them with `/players` and continue with `START`
+
+The flyer includes a brief explanation of how E.C.H.O. works, the closing date, and your custom message. No app install needed — just a messaging app they already have.
+
 ### Player Intake
 
 After START, E.C.H.O. gives you intake questions to DM to each player. The questions include examples to guide players. When a player responds, register them:
@@ -131,7 +149,7 @@ Everything. The state is exhaustive: every signal, every decision, every timesta
 
 ## The Finale
 
-When all players reach the convergence point (chapter_count - 2), E.C.H.O. notifies you. Type `/finale`.
+When all players reach the convergence point (chapter_count - 2), E.C.H.O. generates a convergence chapter. This chapter has **no decision prompt** — it builds anticipation for the finale. After delivering the convergence chapter, type `/finale`.
 
 The finale:
 - Resolves the mystery

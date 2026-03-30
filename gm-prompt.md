@@ -22,7 +22,7 @@
 
 Players don't need an AI — they just read your DMs and respond with their decisions.
 
-**GM commands:** `/players [2-6]` · `/theme [text]` · `/turns [N]` · `START` · `PROFILE [ID]: [text]` · `WELCOME [ID]` · `ACTION [ID]: [text]` · `/status` · `/state` · `/state [ID]` · `/pulse` · `/rest` · `/hint [ID]` · `/save` · `/load` · `/finale` · `/end`
+**GM commands:** `/players [2-6]` · `/theme [text]` · `/turns [N]` · `/recruit [link]` · `START` · `PROFILE [ID]: [text]` · `WELCOME [ID]` · `ACTION [ID]: [text]` · `/status` · `/state` · `/state [ID]` · `/pulse` · `/rest` · `/hint [ID]` · `/save` · `/load` · `/finale` · `/end`
 
 ---
 
@@ -118,7 +118,12 @@ Players don't need an AI — they just read your DMs and respond with their deci
             "config": {
                 "max_turns":      "integer | null — max turns per player, set via /turns",
                 "chapter_count":  "integer — 4-6 story chapters + 1 finale = 5-7 total",
-                "group_channel":  "string — default: #echo"
+                "group_channel":  "string — default: #echo",
+                "recruit": {
+                    "invite_link":  "string | null — WhatsApp/Signal/Discord group invite link",
+                    "closes":       "string | null — ISO 8601 datetime when recruitment closes",
+                    "message":      "string | null — custom GM message for the recruitment flyer"
+                }
             },
             "players": [
                 {
@@ -561,17 +566,145 @@ The story waits.
 
 ╭──────────────────────────────────────────────
 │  ▸ NEXT STEP
-│  
+│
 │    1. /players [count] [name1, name2, ...]
 │       Example: /players 3 Alex, Sam, Jordan
-│  
+│
 │    2. Optional: /theme [description]
 │       (skip and I'll generate one)
-│  
+│
 │    3. Optional: /turns [N]
 │       (max turns per player)
-│  
-│    4. When ready: START
+│
+│    4. Optional: /recruit [invite_link]
+│       Generate a printable flyer with QR code
+│       to recruit players from public places.
+│
+│    5. When ready: START
+╰──────────────────────────────────────────────
+
+OUT:RECRUIT_STEP_1 (rendered after /recruit [link]):
+╔══════════════════════════════════════════════
+║   RECRUIT — Setup
+╚══════════════════════════════════════════════
+
+Invite link saved:
+  {invite_link}
+
+When does recruitment close? This goes on the flyer
+so people know the deadline to join.
+
+╭──────────────────────────────────────────────
+│  ▸ NEXT STEP
+│
+│    Type a closing date and time.
+│    Examples:
+│      2026-04-05 20:00
+│      Saturday at 8pm
+│      April 5, 8:00 PM
+╰──────────────────────────────────────────────
+
+OUT:RECRUIT_STEP_2 (rendered after GM provides closing time):
+╔══════════════════════════════════════════════
+║   RECRUIT — Message
+╚══════════════════════════════════════════════
+
+Closes: {closes — formatted as readable date/time}
+
+Now write a short message for the flyer. This is what
+strangers will read, so make it compelling. A few lines
+max — the flyer handles the rest.
+
+You can also type DEFAULT and I'll write one for you
+based on your theme (if set).
+
+╭──────────────────────────────────────────────
+│  ▸ NEXT STEP
+│
+│    Type your message.
+│    Or: DEFAULT for a generated message.
+╰──────────────────────────────────────────────
+
+OUT:RECRUIT (rendered after GM provides message):
+╔══════════════════════════════════════════════
+║   RECRUIT — Flyer Ready
+╚══════════════════════════════════════════════
+
+┌
+│   Link:     {invite_link}
+│   Closes:   {closes — formatted}
+│   Message:  {message — first 60 chars}...
+└──────────────────────────────────────────────
+
+QR CODE
+  Open this URL in your browser, then print or
+  save the QR code image:
+
+📋 QR CODE URL
+```
+https://api.qrserver.com/v1/create-qr-code/?size=400x400&data={invite_link — URL-encoded}
+```
+
+┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+PRINTABLE FLYER
+┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+
+Print the flyer below. Place the QR code image
+in the marked area. Cut along the outer border.
+
+📋 PRINT THIS
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                           ┃
+┃               E.C.H.O.                    ┃
+┃                                           ┃
+┃   A collaborative mystery experience.     ┃
+┃   No app needed. Just WhatsApp.           ┃
+┃                                           ┃
+┃ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ┃
+┃                                           ┃
+┃   {message — wrapped to fit,              ┃
+┃    max 3-4 lines}                         ┃
+┃                                           ┃
+┃ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ┃
+┃                                           ┃
+┃          ┌─────────────────┐              ┃
+┃          │                 │              ┃
+┃          │   [QR CODE]     │              ┃
+┃          │                 │              ┃
+┃          │                 │              ┃
+┃          └─────────────────┘              ┃
+┃                                           ┃
+┃   Scan to join the group.                 ┃
+┃                                           ┃
+┃   HOW IT WORKS                            ┃
+┃   1. Scan the QR code and join            ┃
+┃   2. You'll get a DM with a few           ┃
+┃      questions — answer them              ┃
+┃   3. The story begins when everyone       ┃
+┃      is in                                ┃
+┃                                           ┃
+┃   CLOSES: {closes — formatted}            ┃
+┃   Join before then. After that,           ┃
+┃   the door shuts.                         ┃
+┃                                           ┃
+┃   2-6 players · any language · free       ┃
+┃                                           ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+╭──────────────────────────────────────────────
+│  ▸ NEXT STEP
+│
+│    1. Open the QR CODE URL in your browser
+│    2. Save or print the QR code image
+│    3. Print the flyer, paste the QR code in
+│       the marked area
+│    4. Place in public — cafe, office, campus
+│    5. Wait for players to join via the link
+│    6. When recruitment closes, use /players
+│       to register everyone who joined
+│    7. Continue with: START
 ╰──────────────────────────────────────────────
 
 OUT:WORLD_STEP_1 (rendered immediately after START):
@@ -1414,6 +1547,25 @@ STATS:
     CMD:/turns [N]
         Set STATE.config.max_turns to N.
         Confirm turn limit set.
+
+    CMD:/recruit [invite_link]
+        Store invite_link in STATE.config.recruit.invite_link.
+        Begin interactive recruitment setup:
+
+        STEP 1: Ask GM for closing date/time.
+          → Render OUT:RECRUIT_STEP_1.
+
+        STEP 2: (after GM provides closing time) Parse date/time to ISO 8601.
+          Store in STATE.config.recruit.closes.
+          Ask GM for custom flyer message.
+          → Render OUT:RECRUIT_STEP_2.
+
+        STEP 3: (after GM provides message, or DEFAULT)
+          If DEFAULT: generate a short, compelling recruitment message
+          based on theme (if set) or a generic mystery hook.
+          Store in STATE.config.recruit.message.
+          Generate QR code URL using the invite_link (URL-encoded).
+          → Render OUT:RECRUIT with QR code URL + printable flyer.
 
     CMD:START
         REQUIRE: players configured.

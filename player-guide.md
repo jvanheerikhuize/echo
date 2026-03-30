@@ -14,7 +14,7 @@ E.C.H.O. is a shared narrative experience. You and other players are dropped int
    - **Observer** — You notice visual details, spatial patterns, and light.
    - **Listener** — You hear sounds, voices, rhythms, and silences.
    - **Keeper** — You find objects, textures, mechanisms, and traces.
-   - **Anchor** — You sense atmosphere, temperature shifts, and timing.
+   - **Anchor** — You sense atmosphere, temperature shifts, timing, and wrongness.
 
 3. **Each chapter, you read a scene** written for your role. You'll encounter details only you can notice.
 

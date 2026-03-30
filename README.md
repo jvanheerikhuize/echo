@@ -9,20 +9,20 @@ An immersive multiplayer narrative experience for 2-6 players, powered by any ad
 Players are assigned roles — **Observer**, **Listener**, **Keeper**, or **Anchor** — each perceiving a different slice of the same reality. A mystery unfolds through their choices. No one has the full picture alone. The answer only assembles when all perspectives combine.
 
 ```
-                 ┌──────────────────────┐
-                 │   GM's LLM Session   │
-                 │   loads: gm-prompt.md    │
-                 │   sees: everything    │
-                 └──────────┬───────────┘
-                            │
-           ┌────────────────┼────────────────┐
-           │ DM             │ DM             │ DM
-           ▼                ▼                ▼
-   ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
-   │  Observer     │ │  Listener    │ │  Keeper      │
-   │  sees layout  │ │  hears clues │ │  finds objects│
-   │  decides where│ │  decides who │ │  decides what │
-   └──────────────┘ └──────────────┘ └──────────────┘
+                    ┌──────────────────────┐
+                    │   GM's LLM Session   │
+                    │   loads: gm-prompt.md │
+                    │   sees: everything    │
+                    └──────────┬───────────┘
+                               │
+          ┌────────────┬───────┴───────┬────────────┐
+          │ DM         │ DM           │ DM         │ DM
+          ▼            ▼              ▼            ▼
+   ┌────────────┐┌────────────┐┌────────────┐┌────────────┐
+   │  Observer   ││  Listener  ││  Keeper    ││  Anchor    │
+   │  sees layout││ hears clues││finds objects││senses mood │
+   │decides where││ decides who││decides what││decides when│
+   └────────────┘└────────────┘└────────────┘└────────────┘
 ```
 
 One person runs the prompt as **Game Master**. Players don't need AI — they read DMs, make decisions, and respond. The GM relays their choices. The LLM generates the next chapter with consequences.
@@ -45,10 +45,10 @@ One person runs the prompt as **Game Master**. Players don't need AI — they re
 
 | Role | Perceives | Decides on |
 |------|-----------|------------|
-| **Observer** | Visual details, spatial layout, patterns, light | Where to go, what to examine |
-| **Listener** | Sounds, voices, rhythms, silences, recordings | Who to trust, what signals mean |
-| **Keeper** | Objects, textures, mechanisms, traces, tools | What to take, use, or leave behind |
-| **Anchor** | Atmosphere, temperature, instinct, timing | When to act, wait, or warn |
+| **Observer** | Visual details, spatial layout, patterns, light, written text, marks | Where to go, what to examine, what to read |
+| **Listener** | Sounds, voices, rhythms, silences, recordings | Who or what to trust, what signals mean, whether to respond |
+| **Keeper** | Objects, textures, mechanisms, traces, tools | What to take, use, leave behind, or combine |
+| **Anchor** | Atmosphere, temperature shifts, instinct, timing, wrongness | When to act, wait, or warn, what feels off |
 
 Roles are assigned automatically based on intake answers. The GM can override.
 
@@ -58,12 +58,12 @@ Each chapter ends with a concrete, role-appropriate choice. The Observer picks w
 
 After each decision, E.C.H.O. extracts **signals** — sensory details and decision outcomes — and stores them per player. These signals progressively bleed into other players' realities through **crossweave**:
 
-| Phase | Effect |
-|-------|--------|
-| **HINT** | Other players referenced as distant presences |
-| **BLEED** | Unexplained clues from others' decisions appear in your scene |
-| **MERGE** | Others' choices directly affect your reality |
-| **REVEAL** | All signals converge — the mystery resolves, names appear |
+| Phase | Chapters | Effect |
+|-------|----------|--------|
+| **HINT** | 1-2 | Other players referenced as distant presences |
+| **BLEED** | 3-4 | Unexplained clues from others' decisions appear in your scene |
+| **MERGE** | Convergence | Others' choices directly affect your reality |
+| **REVEAL** | Finale | All signals converge — the mystery resolves, names appear |
 
 ## Features
 
@@ -76,6 +76,7 @@ After each decision, E.C.H.O. extracts **signals** — sensory details and decis
 - **Raw state access** — `/state` dumps the full engine state as JSON
 - **Synchronized rounds** — all players advance together
 - **Guided world creation** — pick from generated settings, shape the mystery, set the pace
+- **Public recruitment** — generate a printable flyer with QR code to recruit strangers via WhatsApp/Signal/Discord
 - **Post-game reports** — every player gets a personal debrief: their decisions, their impact, the full picture
 
 ## GM Commands
@@ -85,6 +86,7 @@ After each decision, E.C.H.O. extracts **signals** — sensory details and decis
 | `/players [2-6] [names]` | Register players |
 | `/theme [text]` | Set a theme (optional) |
 | `/turns [N]` | Set max turns per player |
+| `/recruit [link]` | Generate printable flyer with QR code to recruit players |
 | `START` | Generate the world |
 | `PROFILE [ID]: [answers]` | Register profile, assign role |
 | `WELCOME [ID]` | Generate personalized welcome |
