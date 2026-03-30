@@ -67,11 +67,11 @@ PROFILE PLAYER_1: NL, zij/haar, 28, de uitgangen, zicht,
 ik ging eerder weg bij een feest, lege gangen, rusteloos
 ```
 
-E.C.H.O. processes the answers, assigns a role, and explains why. Then generate their welcome: `WELCOME PLAYER_1`.
+E.C.H.O. stores the answers but **does not assign a role yet**. Once all players have been profiled, roles are assigned for everyone at once. Then generate each welcome: `WELCOME PLAYER_1`.
 
 ### Role Assignment
 
-Roles are assigned based on intake answers — primarily what they notice first in a new room:
+Roles are assigned **only after all profiles are in** — never one at a time. This lets E.C.H.O. optimize party balance across the full group before committing.
 
 | Answer type | Assigned role |
 |-------------|--------------|
@@ -82,7 +82,7 @@ Roles are assigned based on intake answers — primarily what they notice first 
 
 Override with: `PROFILE PLAYER_1: [answers] ROLE=listener`
 
-E.C.H.O. also avoids duplicate roles when possible.
+E.C.H.O. avoids duplicate roles by considering all players' answers together.
 
 ---
 

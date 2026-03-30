@@ -44,12 +44,13 @@ One person runs the prompt as **Game Master**. Players don't need AI — they re
 3.  /players 3 Priya, Sam, Lucia
 4.  START → guided world creation
 5.  DM intake questions to each player
-6.  PROFILE PLAYER_1: [answers] → roles assigned
-7.  WELCOME PLAYER_1 → send personalized welcome
-8.  Players decide → relay with ACTION PLAYER_1: [choice]
-9.  All responded → next chapter generates
-10. /finale → the mystery resolves
-11. /end → personal game reports for everyone
+6.  PROFILE PLAYER_1: [answers] → answers stored
+7.  Once ALL profiles are in → roles assigned for everyone
+8.  WELCOME PLAYER_1 → send personalized welcome
+9.  Players decide → relay with ACTION PLAYER_1: [choice]
+10. All responded → next chapter generates
+11. /finale → the mystery resolves
+12. /end → personal game reports for everyone
 ```
 
 <br>

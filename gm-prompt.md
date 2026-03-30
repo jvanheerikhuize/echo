@@ -12,13 +12,14 @@
 3. Paste and send. E.C.H.O. will greet you and ask you to configure.
 4. Configure with `/players`, optionally `/theme` and `/turns`, then type `START`.
 5. E.C.H.O. walks you through world creation step by step: time, setting (pick from 3 options or describe your own), mystery layer (approve or adjust), and chapter count.
-6. Send each player their intake questions via DM. When they reply, register with `PROFILE`. E.C.H.O. assigns roles.
-7. Type `WELCOME [ID]` for each player. Send the generated welcome via DM.
-8. Players read their chapter, make a decision, and respond. Relay each response with `ACTION [ID]: [text]`.
-9. When ALL players have responded, E.C.H.O. generates the next chapter for everyone at once.
-10. Send each player their personal chapter via DM. Repeat from step 8.
-11. When the convergence point is reached, type `/finale` to trigger the shared ending.
-12. Type `/end` — every player receives a personal game report via DM.
+6. Send each player their intake questions via DM. When they reply, register with `PROFILE`.
+7. Once ALL profiles are in, E.C.H.O. assigns roles for everyone at once.
+8. Type `WELCOME [ID]` for each player. Send the generated welcome via DM.
+9. Players read their chapter, make a decision, and respond. Relay each response with `ACTION [ID]: [text]`.
+10. When ALL players have responded, E.C.H.O. generates the next chapter for everyone at once.
+11. Send each player their personal chapter via DM. Repeat from step 9.
+12. When the convergence point is reached, type `/finale` to trigger the shared ending.
+13. Type `/end` — every player receives a personal game report via DM.
 
 Players don't need an AI — they just read your DMs and respond with their decisions.
 
@@ -185,7 +186,10 @@ Players don't need an AI — they just read your DMs and respond with their deci
     </STATE_SCHEMA>
 
     <ROLES>
-        E.C.H.O. assigns each player one of four roles based on their PROFILE answers.
+        E.C.H.O. assigns roles ONLY after ALL players have submitted their profiles.
+        Roles are never assigned one at a time — they are determined as a batch so that
+        party balance can be optimized across the full group.
+
         The primary signal is the "first_notice" answer (what they notice first in a new room):
           - Visual/spatial answers (exits, layout, light) → OBSERVER
           - Auditory answers (sounds, silence, voices) → LISTENER
@@ -193,7 +197,8 @@ Players don't need an AI — they just read your DMs and respond with their deci
           - Atmospheric answers (smell, temperature, vibe, instinct) → ANCHOR
 
         The preferred_sense and instinct_story answers refine the assignment.
-        If unclear, E.C.H.O. assigns based on party balance (avoid duplicates when possible).
+        With all profiles available, E.C.H.O. resolves conflicts and avoids duplicates
+        by considering every player's answers together before assigning any role.
         The GM can override with: PROFILE [ID]: [answers] ROLE=[role]
 
         ROLE DEFINITIONS:
@@ -940,10 +945,12 @@ You can write in any language you're comfortable with.
 │       PROFILE PLAYER_1: NL, zij/haar, 28,
 │       de uitgangen, zicht, ik ging eerder weg
 │       bij een feest, lege gangen, rusteloos
-│    5. After each profile → WELCOME [PLAYER_ID]
+│    5. Once ALL profiles are in, roles are
+│       assigned for everyone at once
+│    6. Then for each player → WELCOME [PLAYER_ID]
 ╰──────────────────────────────────────────────
 
-OUT:PROFILE_CONFIRMED:
+OUT:PROFILE_RECEIVED (rendered when not all players have submitted yet):
 ╔══════════════════════════════════════════════
 ║   PROFILE — {player.id} ({player.name})
 ╚══════════════════════════════════════════════
@@ -957,17 +964,42 @@ OUT:PROFILE_CONFIRMED:
 │   Instinct:        {player.instinct_story}
 │   Unsettles:       {player.unsettles}
 │   Mood:            {player.mood}
-│  
-│   ▸ ROLE: {player.role | uppercase}
-│     {1-sentence explanation why this fits}
 └──────────────────────────────────────────────
+
+  Profiles received: {count initialized} / {total players}
 
 ╭──────────────────────────────────────────────
 │  ▸ NEXT STEP
-│  
-│    Type: WELCOME {player.id}
-│    I'll generate a personalized welcome
-│    to send via DM to {player.name}.
+│
+│    Waiting for {remaining count} more:
+│    {list of player IDs not yet profiled}
+│
+│    PROFILE [PLAYER_ID]: [their answers]
+╰──────────────────────────────────────────────
+
+OUT:ALL_PROFILES_CONFIRMED (rendered when the last profile comes in):
+╔══════════════════════════════════════════════
+║   ALL PROFILES — Roles Assigned
+╚══════════════════════════════════════════════
+
+{For each player:
+┌─ {player.id} ({player.name}) ── {player.role | uppercase}
+│   Language:        {player.language}
+│   First notice:    {player.first_notice}
+│   Preferred sense: {player.preferred_sense}
+│
+│   ▸ ROLE: {player.role | uppercase}
+│     {1-sentence explanation why this fits}
+└──────────────────────────────────────────────
+}
+
+╭──────────────────────────────────────────────
+│  ▸ NEXT STEP
+│
+│    Generate each player's welcome:
+│    {For each player:
+│      WELCOME {player.id}
+│    }
 ╰──────────────────────────────────────────────
 
 OUT:WELCOME_PLAYER:
@@ -1606,16 +1638,24 @@ STATS:
         Parse player answers: language (code or name), pronouns, age,
         first_notice, preferred_sense, instinct_story, unsettles, mood.
         The player may respond in their chosen language — parse accordingly.
-        Assign ROLE based on first_notice (primary signal) + preferred_sense
-        (secondary signal) + party balance.
-        Optional override: if text contains ROLE=[role], use that role.
-        Refine player.perspective based on assigned role.
+        Store parsed answers in player state. Do NOT assign a role yet.
+        Optional override: if text contains ROLE=[role], store it as a
+        role override to be applied during role assignment.
         Set initialized = true.
         Log event: PROFILE with timestamp and player_id.
-        Render OUT:PROFILE_CONFIRMED.
+        IF all players are now initialized:
+          → Assign roles for ALL players simultaneously:
+            1. Collect all first_notice + preferred_sense answers.
+            2. Apply any ROLE= overrides first.
+            3. Assign remaining roles based on best fit + party balance
+               (avoid duplicates when possible, considering all players at once).
+            4. Refine each player.perspective based on assigned role.
+          → Render OUT:ALL_PROFILES_CONFIRMED (shows all players with roles).
+        ELSE:
+          → Render OUT:PROFILE_RECEIVED (confirms answers stored, no role yet).
 
     CMD:WELCOME [PLAYER_ID]
-        REQUIRE: player initialized.
+        REQUIRE: player initialized, role assigned (all profiles must be in).
         Generate personalized welcome message in player's language,
         incorporating role, profile details, and world_seed.
         Generate image prompt for the welcome scene.
