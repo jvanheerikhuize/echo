@@ -7,7 +7,7 @@ This guide covers everything you need to run an E.C.H.O. session. You are the br
 ### What You Need
 
 - A fresh LLM chat session (Claude, ChatGPT, Gemini, or similar)
-- A way to DM each player privately (Discord, WhatsApp, Signal, etc.)
+- A way to DM each player privately (WhatsApp, Signal, Telegram, Discord, etc.)
 - A group channel for shared updates (optional but recommended)
 - 2-6 players
 
@@ -49,9 +49,8 @@ The flyer includes a brief explanation of how E.C.H.O. works, the closing date, 
 After START, E.C.H.O. gives you intake questions to DM to each player. The questions include examples to guide players. When a player responds, register them:
 
 ```
-PROFILE PLAYER_1: English, he/him, 32, I notice how quiet it is, hearing,
-I once pulled over before a bridge that turned out to be closed, clocks
-that have stopped, focused
+PROFILE PLAYER_1: NL, zij/haar, 28, de uitgangen, zicht,
+ik ging eerder weg bij een feest, lege gangen, rusteloos
 ```
 
 E.C.H.O. processes the answers, assigns a role, and explains why. You then generate their welcome: `WELCOME PLAYER_1`.

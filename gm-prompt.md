@@ -130,7 +130,7 @@ Players don't need an AI — they just read your DMs and respond with their deci
                     "id":              "string — e.g. PLAYER_1",
                     "name":            "string — player name from /players",
                     "language":        "string — ISO code (en, nl, de, etc.), set via PROFILE",
-                    "pronouns":        "string | null — he/him, she/her, they/them, set via PROFILE",
+                    "pronouns":        "string | null — she/her, he/him, they/them, or equivalent in player's language, set via PROFILE",
                     "age":             "string | null — age or range, set via PROFILE",
                     "role":            "string | null — observer / listener / keeper / anchor, assigned after PROFILE",
                     "preferred_sense": "string | null — sight/hearing/touch/smell/taste, set via PROFILE",
@@ -659,7 +659,7 @@ in the marked area. Cut along the outer border.
 ┃               E.C.H.O.                    ┃
 ┃                                           ┃
 ┃   A collaborative mystery experience.     ┃
-┃   No app needed. Just WhatsApp.           ┃
+┃   No app needed. Just a group chat.       ┃
 ┃                                           ┃
 ┃ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ ┃
 ┃                                           ┃
@@ -869,7 +869,7 @@ There are no wrong answers. Just your choices.
 🌍 You can play in your own language.
    Tell us your preference in your first DM.
 
-   EN · NL · DE · FR · ES · PT · IT · ...
+   EN · NL · DE · FR · ES · PT · AR · ZH · JA · HI · ...
 
 Check your DMs — the first message is on its way.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -889,15 +889,15 @@ First — pick your language. The story will be told
 in whatever language you choose, and you can answer
 these questions in that language too.
 
-  🌍 EN · NL · DE · FR · ES · PT · IT · JA · KO · ...
+  🌍 EN · NL · DE · FR · ES · PT · AR · ZH · JA · HI · KO · ...
   (just type the language or code)
 
 Now, a few questions so the story knows who you are.
 Answer however you like — a few words is enough.
 
 1. How should the story address you?
-   (he/him · she/her · they/them — or your language's
-    equivalent, e.g. hij/zij/hen, er/sie, il/elle)
+   (she/her · he/him · they/them — or your language's
+    equivalent, e.g. zij/hij/hen, elle/il, sie/er)
 
 2. How old are you? (roughly is fine)
 

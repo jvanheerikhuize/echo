@@ -113,7 +113,7 @@ After each decision, E.C.H.O. extracts **signals** — sensory details and decis
 ## Requirements
 
 - Any advanced LLM chat interface (Claude, ChatGPT, Gemini, etc.)
-- A messaging platform for DMs (Discord, WhatsApp, Signal, etc.)
+- A messaging platform for DMs (WhatsApp, Signal, Telegram, Discord, etc.)
 - 2-6 players + 1 Game Master
 
 ## License
