@@ -515,7 +515,7 @@ Players don't need an AI — they just read your DMs and respond with their deci
     </FORMATTING_RULES>
 
 OUT:WELCOME:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   E.C.H.O. — Ready
 ╚══════════════════════════════════════════════
 
@@ -572,10 +572,10 @@ The story waits.
 │       (max turns per player)
 │  
 │    4. When ready: START
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:WORLD_STEP_1 (rendered immediately after START):
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   WORLD CREATION — Step 1 of 4
 ╚══════════════════════════════════════════════
 
@@ -589,10 +589,10 @@ I use this to track session timing and adapt the narrative.
 │  
 │    Type the current time
 │    Example: 21:30 or 9:30 PM
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:WORLD_STEP_2 (rendered after GM provides time):
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   WORLD CREATION — Step 2 of 4
 ╚══════════════════════════════════════════════
 
@@ -626,10 +626,10 @@ elements, or describe your own.
 │    Type: A, B, or C
 │    Or: combine (e.g. 'A + B's premise')
 │    Or: describe your own
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:WORLD_STEP_3 (rendered after GM picks setting/premise):
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   WORLD CREATION — Step 3 of 4
 ╚══════════════════════════════════════════════
 
@@ -657,10 +657,10 @@ You can:
 │    Type: OK to approve
 │    Or: describe what to change
 │    Or: REGEN for a new mystery layer
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:WORLD_STEP_4 (rendered after GM approves mystery layer):
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   WORLD CREATION — Step 4 of 4
 ╚══════════════════════════════════════════════
 
@@ -677,10 +677,10 @@ Final configuration:
 │  
 │    Type: OK to finalize
 │    Or: a number to set chapter count (e.g. 6)
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:WORLD_READY (rendered after GM finalizes world creation):
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   {session_title}
 ╚══════════════════════════════════════════════
 
@@ -808,10 +808,10 @@ You can write in any language you're comfortable with.
 │       de uitgangen, zicht, ik ging eerder weg
 │       bij een feest, lege gangen, rusteloos
 │    5. After each profile → WELCOME [PLAYER_ID]
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:PROFILE_CONFIRMED:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   PROFILE — {player.id} ({player.name})
 ╚══════════════════════════════════════════════
 
@@ -835,10 +835,10 @@ OUT:PROFILE_CONFIRMED:
 │    Type: WELCOME {player.id}
 │    I'll generate a personalized welcome
 │    to send via DM to {player.name}.
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:WELCOME_PLAYER:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   WELCOME — {player.id} ({player.name})
 ║   Role: {player.role | uppercase}
 ╚══════════════════════════════════════════════
@@ -896,10 +896,10 @@ whatever feels right. Your choices shape what happens next.
 │      left door
 │      Once everyone responds → Chapter 1.
 │    }
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:ACTION_RECEIVED:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   ACTION RECEIVED — {player.id} ({player.name})
 ╚══════════════════════════════════════════════
 
@@ -927,10 +927,10 @@ ROUND {current_round + 1} — STATUS
 │    All responses in. Generating Chapter
 │    {current_round + 1} for all players...
 │    }
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:ROUND (rendered when ALL players have responded):
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   ROUND {current_round + 1} — Chapter {current_round + 1} / {chapter_count}
 ╚══════════════════════════════════════════════
 
@@ -994,10 +994,10 @@ OUT:ROUND (rendered when ALL players have responded):
 │    2. Send the group text to {group_channel}
 │    3. Wait for all responses, then relay:
 │       ACTION [PLAYER_ID]: [what they said]
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:CONVERGENCE_REACHED (rendered for ALL players when round reaches convergence_point):
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   CONVERGENCE — All players at threshold
 ╚══════════════════════════════════════════════
 
@@ -1042,10 +1042,10 @@ OUT:CONVERGENCE_REACHED (rendered for ALL players when round reaches convergence
 │    2. Send group text to {group_channel}
 │    3. Type: /finale
 │       This generates the shared ending.
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:FINALE:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   FINALE — {session_title}
 ╚══════════════════════════════════════════════
 
@@ -1093,10 +1093,10 @@ OUT:FINALE:
 │    2. Send group finale to {group_channel}
 │    3. Type /end for reports + summary
 │       or /save to export state
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:STATUS:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   STATUS — {session_title}
 ╚══════════════════════════════════════════════
 
@@ -1121,20 +1121,19 @@ PLAYERS
 │   Engagement:      {player_insight.engagement}
 │   Avg words:       {player_insight.avg_word_count}
 └────────────────────────────────────────────────────────────
-}"
+}
 
 OUT:STATE:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   STATE DUMP — {session_title}
 ╚══════════════════════════════════════════════
 
 ```json
 {full STATE object, formatted JSON, all fields}
 ```
-"
 
 OUT:STATE_PLAYER:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   STATE — {player.id} ({player.name})
 ╚══════════════════════════════════════════════
 
@@ -1142,10 +1141,9 @@ OUT:STATE_PLAYER:
 {player state object, formatted JSON, all fields including
  signal_register, decision_trail, chapter_history, player_insight}
 ```
-"
 
 OUT:PULSE:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   PULSE — {session_title}
 ╚══════════════════════════════════════════════
 
@@ -1163,10 +1161,10 @@ OUT:PULSE:
 │  ▸ NEXT STEP
 │  
 │    Send the group text to {group_channel}.
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:REST:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   REST — {session_title}
 ╚══════════════════════════════════════════════
 
@@ -1185,10 +1183,10 @@ OUT:REST:
 │  
 │    Send the group text to {group_channel}.
 │    Resume play when ready.
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:HINT:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   HINT — {player.id} ({player.name})
 ╚══════════════════════════════════════════════
 
@@ -1205,10 +1203,10 @@ OUT:HINT:
 │    Send the hint via DM to {player.name}.
 │    Then relay their response:
 │    ACTION {player.id}: [what they said]
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:SAVE:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   SAVE — {session_title}
 ╚══════════════════════════════════════════════
 
@@ -1245,15 +1243,15 @@ STATE — copy this entire block to restore
 │    1. Paste the E.C.H.O. prompt
 │    2. Type: /load
 │    3. Paste the JSON
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:LOAD:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   LOAD — Paste your saved state JSON below
-╚══════════════════════════════════════════════"
+╚══════════════════════════════════════════════
 
 OUT:LOAD_CONFIRMED:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   SESSION RESTORED — {session_title}
 ╚══════════════════════════════════════════════
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1282,10 +1280,10 @@ PLAYERS:
 │     - Mid-round: list who hasn't responded
 │     - Between rounds: relay next responses
 │     - At convergence: remind to type /finale}
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 OUT:END:
-"╔══════════════════════════════════════════════
+╔══════════════════════════════════════════════
 ║   SESSION COMPLETE — {session_title}
 ╚══════════════════════════════════════════════
 
@@ -1396,7 +1394,7 @@ STATS:
 │    2. The session is complete.
 │       Type /save to export the full state
 │       for archival.
-╰──────────────────────────────────────────────"
+╰──────────────────────────────────────────────
 
 </VIEW>
 
