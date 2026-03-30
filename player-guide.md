@@ -22,6 +22,10 @@ E.C.H.O. is a shared narrative experience. You and other players are dropped int
 | **👂** | **Listener** | Sounds, voices, rhythms, and silences |
 | **🤲** | **Keeper** | Objects, textures, mechanisms, and traces |
 | **🌡** | **Anchor** | Atmosphere, temperature shifts, timing, and wrongness |
+| **🔬** | **Tracer** | Scent, chemical traces, air quality, and decay |
+| **🔗** | **Weaver** | Patterns, codes, sequences, and anomalies |
+| **🪞** | **Mirror** | People, expressions, body language, and intent |
+| **💨** | **Drifter** | Movement, flow, vibrations, and momentum |
 
 **3. Each chapter, you read a scene** written for your role. You'll encounter details only you can notice.
 

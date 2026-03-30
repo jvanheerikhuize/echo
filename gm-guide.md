@@ -13,7 +13,7 @@
 | **LLM** | A fresh chat session — Claude, ChatGPT, Gemini, or similar |
 | **Messaging** | A way to DM each player privately — WhatsApp, Signal, Telegram, Discord, etc. |
 | **Group** | A group channel for shared updates (optional but recommended) |
-| **Players** | 2-6 people |
+| **Players** | 2-40 people |
 
 ### Starting a Session
 
@@ -79,6 +79,10 @@ Roles are assigned **only after all profiles are in** — never one at a time. T
 | Sound/silence answers | **Listener** |
 | Object/texture answers | **Keeper** |
 | Atmosphere/instinct answers | **Anchor** |
+| Smell/chemical answers | **Tracer** |
+| Pattern/data answers | **Weaver** |
+| People/social answers | **Mirror** |
+| Movement/change answers | **Drifter** |
 
 Override with: `PROFILE PLAYER_1: [answers] ROLE=listener`
 

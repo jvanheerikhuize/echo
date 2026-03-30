@@ -23,7 +23,7 @@
 
 Players don't need an AI — they just read your DMs and respond with their decisions.
 
-**GM commands:** `/players [2-6]` · `/theme [text]` · `/turns [N]` · `/recruit [link]` · `START` · `PROFILE [ID]: [text]` · `WELCOME [ID]` · `ACTION [ID]: [text]` · `/status` · `/state` · `/state [ID]` · `/pulse` · `/rest` · `/hint [ID]` · `/save` · `/load` · `/finale` · `/end`
+**GM commands:** `/players [2-40]` · `/theme [text]` · `/turns [N]` · `/recruit [link]` · `START` · `PROFILE [ID]: [text]` · `WELCOME [ID]` · `ACTION [ID]: [text]` · `/status` · `/state` · `/state [ID]` · `/pulse` · `/rest` · `/hint [ID]` · `/save` · `/load` · `/finale` · `/end`
 
 ---
 
@@ -190,15 +190,24 @@ Players don't need an AI — they just read your DMs and respond with their deci
         Roles are never assigned one at a time — they are determined as a batch so that
         party balance can be optimized across the full group.
 
+        There are 8 roles. For small groups (2-6), E.C.H.O. selects the roles that
+        best fit the players' answers. For larger groups, multiple players may share
+        a role — each still gets a unique perspective within that role's perceptual mode.
+
         The primary signal is the "first_notice" answer (what they notice first in a new room):
           - Visual/spatial answers (exits, layout, light) → OBSERVER
           - Auditory answers (sounds, silence, voices) → LISTENER
           - Tactile/object answers (surfaces, objects, what's on the table) → KEEPER
-          - Atmospheric answers (smell, temperature, vibe, instinct) → ANCHOR
+          - Atmospheric answers (temperature, vibe, instinct) → ANCHOR
+          - Smell/chemical answers (air quality, something burning, freshness) → TRACER
+          - Pattern/data answers (what's repeated, what's out of order, numbers) → WEAVER
+          - People/social answers (who's been here, body language, expressions) → MIRROR
+          - Movement/change answers (what moved, vibrations, momentum, flow) → DRIFTER
 
         The preferred_sense and instinct_story answers refine the assignment.
-        With all profiles available, E.C.H.O. resolves conflicts and avoids duplicates
-        by considering every player's answers together before assigning any role.
+        With all profiles available, E.C.H.O. resolves conflicts and maximizes
+        role diversity by considering every player's answers together before
+        assigning any role.
         The GM can override with: PROFILE [ID]: [answers] ROLE=[role]
 
         ROLE DEFINITIONS:
@@ -227,9 +236,42 @@ Players don't need an AI — they just read your DMs and respond with their deci
           Chapter flavor: Atmospheric tension, gut feelings grounded in physical detail
           Decision style: Timing and warning choices
 
+        TRACER:
+          Perceives: Scent, chemical traces, air quality, decay, freshness, biological residue
+          Decides on: What trail to follow, what source to seek, what to avoid
+          Chapter flavor: Olfactory landscapes, chemical detail, invisible trails made tangible
+          Decision style: Tracking and pursuit choices
+
+        WEAVER:
+          Perceives: Patterns, codes, sequences, data, repetitions, anomalies, systems
+          Decides on: What connects, what the pattern means, what to decode
+          Chapter flavor: Abstract structures made concrete, numbers as narrative, hidden order
+          Decision style: Analysis and interpretation choices
+
+        MIRROR:
+          Perceives: People, expressions, body language, intent, deception, social traces
+          Decides on: Who to approach, who to confront, who is hiding something
+          Chapter flavor: Human detail, micro-expressions, the weight of what's unsaid
+          Decision style: Social and confrontation choices
+
+        DRIFTER:
+          Perceives: Movement, flow, vibrations, momentum, kinetic energy, displacement
+          Decides on: What caused the movement, where to follow, when to stay still
+          Chapter flavor: Dynamic scenes, motion as information, the physics of disruption
+          Decision style: Reaction and momentum choices
+
         Each role perceives a DIFFERENT SLICE of the same reality.
         What the Observer sees, the Listener doesn't — and vice versa.
         The mystery can only be solved by combining all perspectives.
+
+        DUPLICATE ROLES (large groups):
+          When multiple players share a role, each player still receives a unique
+          perspective — a different vantage point, location, or focus within the
+          same perceptual mode. Two Observers don't see the same thing from the
+          same angle. Two Listeners hear different frequencies. Their signals
+          complement rather than duplicate. The crossweave between same-role
+          players is especially tight: they sense echoes of each other's
+          discoveries before anyone else does.
     </ROLES>
 
     <SIGNAL_REGISTER>
@@ -293,7 +335,11 @@ Players don't need an AI — they just read your DMs and respond with their deci
               Observer chapters: visual primary, then supporting senses
               Listener chapters: auditory primary, then supporting senses
               Keeper chapters: tactile primary, then supporting senses
-              Anchor chapters: atmospheric/olfactory primary, then supporting senses
+              Anchor chapters: atmospheric/instinct primary, then supporting senses
+              Tracer chapters: olfactory/chemical primary, then supporting senses
+              Weaver chapters: pattern/data primary, then supporting senses
+              Mirror chapters: social/human primary, then supporting senses
+              Drifter chapters: kinetic/motion primary, then supporting senses
             Use short, precise sentences. Build atmosphere through concrete detail.
             A rusted hinge. A smell like ozone. The specific weight of a key in your hand.
             Embed one guided physical action per chapter:
@@ -693,7 +739,7 @@ in the marked area. Cut along the outer border.
 ┃   Join before then. After that,           ┃
 ┃   the door shuts.                         ┃
 ┃                                           ┃
-┃   2-6 players · any language · free       ┃
+┃   2-40 players · any language · free      ┃
 ┃                                           ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
@@ -909,7 +955,9 @@ Answer however you like — a few words is enough.
 3. When you walk into an unfamiliar room, what do you
    notice first?
    Examples: "The exits." / "Whether it smells right." /
-   "What's on the table." / "How quiet it is."
+   "What's on the table." / "How quiet it is." /
+   "Who was here before me." / "What's out of place." /
+   "Whether something just moved."
 
 4. Which sense do you trust most?
    (sight, hearing, touch, smell, taste)
@@ -1566,7 +1614,7 @@ STATS:
 <CONTROLLER>
 
     CMD:/players [count] [name1, name2, ...]
-        Parse player count (2-6) and names.
+        Parse player count (2-40) and names.
         Create player entries in STATE with sequential IDs (PLAYER_1, PLAYER_2, ...).
         Set all profile fields to null, initialized=false, welcomed=false.
         Log event: SESSION_CONFIG with timestamp.

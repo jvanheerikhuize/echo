@@ -4,10 +4,10 @@
 
 ### Experiential Collaborative Hub Orchestrator
 
-An immersive multiplayer narrative experience for 2-6 players, powered by any advanced LLM.
+An immersive multiplayer narrative experience for 2-40 players, powered by any advanced LLM.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](LICENSE)
-[![Players](https://img.shields.io/badge/Players-2--6-blue.svg)](#)
+[![Players](https://img.shields.io/badge/Players-2--40-blue.svg)](#)
 [![AI Required](https://img.shields.io/badge/AI-Any%20LLM-purple.svg)](#)
 [![Languages](https://img.shields.io/badge/Languages-Any-green.svg)](#)
 
@@ -28,6 +28,10 @@ graph TD
     GM -->|DM| L["<b>Listener</b><br>hears clues<br>decides who"]
     GM -->|DM| K["<b>Keeper</b><br>finds objects<br>decides what"]
     GM -->|DM| A["<b>Anchor</b><br>senses mood<br>decides when"]
+    GM -->|DM| T["<b>Tracer</b><br>follows scent<br>decides what trail"]
+    GM -->|DM| W["<b>Weaver</b><br>reads patterns<br>decides what connects"]
+    GM -->|DM| M["<b>Mirror</b><br>reads people<br>decides who to confront"]
+    GM -->|DM| D["<b>Drifter</b><br>feels movement<br>decides what shifted"]
 ```
 
 One person runs the prompt as **Game Master**. Players don't need AI — they read DMs, make decisions, and respond. The GM relays their choices. The LLM generates the next chapter with consequences.
@@ -36,7 +40,7 @@ One person runs the prompt as **Game Master**. Players don't need AI — they re
 
 ## Quick Start
 
-> **Requirements:** Any advanced LLM chat (Claude, ChatGPT, Gemini) + a messaging platform (WhatsApp, Signal, Telegram, Discord) + 2-6 players
+> **Requirements:** Any advanced LLM chat (Claude, ChatGPT, Gemini) + a messaging platform (WhatsApp, Signal, Telegram, Discord) + 2-40 players
 
 ```
 1.  Copy the prompt from the code block in gm-prompt.md
@@ -65,6 +69,10 @@ Each role perceives a **different slice** of the same reality. The mystery can o
 | **👂** | **Listener** | Sounds, voices, rhythms, silences, recordings | Who or what to trust, what signals mean, whether to respond |
 | **🤲** | **Keeper** | Objects, textures, mechanisms, traces, tools | What to take, use, leave behind, or combine |
 | **🌡** | **Anchor** | Atmosphere, temperature shifts, instinct, timing, wrongness | When to act, wait, or warn, what feels off |
+| **🔬** | **Tracer** | Scent, chemical traces, air quality, decay, freshness | What trail to follow, what source to seek, what to avoid |
+| **🔗** | **Weaver** | Patterns, codes, sequences, data, repetitions, anomalies | What connects, what the pattern means, what to decode |
+| **🪞** | **Mirror** | People, expressions, body language, intent, deception | Who to approach, who to confront, who is hiding something |
+| **💨** | **Drifter** | Movement, flow, vibrations, momentum, displacement | What caused the movement, where to follow, when to stay still |
 
 > Roles are assigned automatically based on intake answers. The GM can override.
 
@@ -118,7 +126,7 @@ graph LR
 **Social**
 - Public recruitment via QR code flyers
 - Any messaging platform
-- 2-6 players, any language mix
+- 2-40 players, any language mix
 
 </td>
 <td width="50%">
@@ -142,7 +150,7 @@ graph LR
 
 | Command | Description |
 |---------|-------------|
-| `/players [2-6] [names]` | Register players |
+| `/players [2-40] [names]` | Register players |
 | `/theme [text]` | Set a theme (optional) |
 | `/turns [N]` | Set max turns per player |
 | `/recruit [link]` | Generate printable flyer with QR code to recruit players |
