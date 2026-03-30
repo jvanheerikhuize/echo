@@ -21,21 +21,13 @@ An immersive multiplayer narrative experience for 2-6 players, powered by any ad
 
 <br>
 
-```
-                  ┌────────────────────────┐
-                  │    GM's LLM Session    │
-                  │   loads: gm-prompt.md  │
-                  │    sees: everything    │
-                  └───────────┬────────────┘
-                              │
-         ┌──────────┬─────────┴────────┬──────────┐
-         │ DM       │ DM               │ DM       │ DM
-         ▼          ▼                  ▼          ▼
-  ┌────────────┐┌────────────┐┌────────────┐┌────────────┐
-  │  Observer   ││  Listener  ││   Keeper   ││   Anchor   │
-  │ sees layout ││ hears clues││finds objects││ senses mood│
-  │decides where││ decides who││decides what││decides when│
-  └────────────┘└────────────┘└────────────┘└────────────┘
+```mermaid
+graph TD
+    GM["<b>GM's LLM Session</b><br>loads: gm-prompt.md<br>sees: everything"]
+    GM -->|DM| O["<b>Observer</b><br>sees layout<br>decides where"]
+    GM -->|DM| L["<b>Listener</b><br>hears clues<br>decides who"]
+    GM -->|DM| K["<b>Keeper</b><br>finds objects<br>decides what"]
+    GM -->|DM| A["<b>Anchor</b><br>senses mood<br>decides when"]
 ```
 
 One person runs the prompt as **Game Master**. Players don't need AI — they read DMs, make decisions, and respond. The GM relays their choices. The LLM generates the next chapter with consequences.
@@ -83,16 +75,13 @@ Each chapter ends with a concrete, role-appropriate choice. The Observer picks w
 
 After each decision, E.C.H.O. extracts **signals** — sensory details and decision outcomes — and stores them per player. These signals progressively bleed into other players' realities through **crossweave**:
 
-```
-  Chapter 1-2        Chapter 3-4        Convergence          Finale
- ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
- │    HINT     │    │    BLEED    │    │    MERGE    │    │   REVEAL    │
- │             │    │             │    │             │    │             │
- │   Distant   │───►│ Unexplained │───►│   Others'   │───►│     All     │
- │  presences  │    │    clues    │    │  decisions  │    │   signals   │
- │  referenced │    │   appear    │    │ affect your │    │  converge   │
- │             │    │             │    │   reality   │    │             │
- └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+```mermaid
+graph LR
+    H["<b>HINT</b><br>Ch 1-2<br><br>Distant presences<br>referenced"]
+    B["<b>BLEED</b><br>Ch 3-4<br><br>Unexplained clues<br>appear"]
+    M["<b>MERGE</b><br>Convergence<br><br>Others' decisions<br>affect your reality"]
+    R["<b>REVEAL</b><br>Finale<br><br>All signals<br>converge"]
+    H --> B --> M --> R
 ```
 
 <br>

@@ -90,17 +90,14 @@ E.C.H.O. also avoids duplicate roles when possible.
 
 ### The Core Loop
 
-```
-┌──────────────────────────────────────────────────┐
-│                                                  │
-│  1. Send each player their chapter via DM        │
-│  2. Players read, decide, respond                │
-│  3. ACTION PLAYER_1: I opened the left door      │
-│  4. Wait until ALL players respond               │
-│  5. E.C.H.O. generates the next chapter         │
-│  6. Repeat                                       │
-│                                                  │
-└──────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    A["Send each player<br>their chapter via DM"] --> B["Players read,<br>decide, respond"]
+    B --> C["Relay each response<br><code>ACTION PLAYER_1: ...</code>"]
+    C --> D{"All players<br>responded?"}
+    D -->|No| B
+    D -->|Yes| E["E.C.H.O. generates<br>the next chapter"]
+    E --> A
 ```
 
 ### What Players See
