@@ -1445,7 +1445,10 @@ STATS:
           refined after PROFILE when role is assigned).
           Set phase = SETUP.
           Log event: SESSION_START with timestamp.
-          → Render OUT:WORLD_READY.
+          Generate GROUP WELCOME message with game instructions for all players.
+          Generate INTAKE QUESTIONS DM for each player.
+          Append group welcome to narrative_log.group_messages.
+          → Render OUT:WORLD_READY (includes group welcome + intake questions).
 
     CMD:PROFILE [PLAYER_ID]: [text]
         Parse player answers: language (code or name), pronouns, age,
