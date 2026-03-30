@@ -15,7 +15,7 @@ This guide covers everything you need to run an E.C.H.O. session. You are the br
 
 1. Copy the full prompt from the code block in `gm-prompt.md`.
 2. Paste it into a fresh LLM session. E.C.H.O. will greet you.
-3. Register players: `/players 4 Alex, Sam, Jordan, Riley`
+3. Register players: `/players 4 Priya, Sam, Lucia, Ayo`
 4. Optionally set a theme: `/theme abandoned research station` (or let E.C.H.O. generate one)
 5. Optionally set turn limits: `/turns 5`
 6. Type `START`. E.C.H.O. walks you through world creation in 4 steps:

@@ -31,7 +31,7 @@ One person runs the prompt as **Game Master**. Players don't need AI — they re
 
 1. Copy the prompt from the code block in [`gm-prompt.md`](gm-prompt.md)
 2. Paste into a fresh LLM session (Claude, ChatGPT, Gemini)
-3. `/players 3 Alex, Sam, Jordan` — register players
+3. `/players 3 Priya, Sam, Lucia` — register players
 4. `START` — guided world creation: pick a setting, shape the mystery, set the pace
 5. DM the intake questions to each player
 6. `PROFILE PLAYER_1: [answers]` — register and assign roles

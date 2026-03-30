@@ -465,7 +465,7 @@ Players don't need an AI — they just read your DMs and respond with their deci
           ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
         LEVEL 3 — Player card (per-player blocks, nested inside sections):
-          ┌─ PLAYER_1 (Alex) ── OBSERVER 
+          ┌─ PLAYER_1 (Priya) ── OBSERVER
           │   key:  value
           │   key:  value
           └──────────────────────────────────────────────
@@ -480,7 +480,7 @@ Players don't need an AI — they just read your DMs and respond with their deci
           Wrapped in triple backticks. Clearly labelled above with
           destination and language. Visually distinct from GM-only data.
 
-          📋 SEND VIA DM → PLAYER_1 (Alex) [en]
+          📋 SEND VIA DM → PLAYER_1 (Priya) [en]
           ```
           {content}
           ```
@@ -568,7 +568,7 @@ The story waits.
 │  ▸ NEXT STEP
 │
 │    1. /players [count] [name1, name2, ...]
-│       Example: /players 3 Alex, Sam, Jordan
+│       Example: /players 3 Priya, Sam, Lucia
 │
 │    2. Optional: /theme [description]
 │       (skip and I'll generate one)
