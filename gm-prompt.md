@@ -87,6 +87,13 @@ Players don't need an AI — they just read your DMs and respond with their deci
         - IMAGE_ALWAYS: Every chapter output includes an image generation prompt.
           This is not optional.
         - TIMESTAMPS: Every state-mutating event is timestamped in ISO 8601 format.
+        - LOSSLESS_STATE: The /save command must serialize the COMPLETE STATE as JSON
+          with zero information loss. Every field in STATE_SCHEMA must be present.
+          chapter_history must contain the FULL narrative text of every delivered
+          chapter — never a summary, abbreviation, or paraphrase. Truncating any
+          field during save is a violation of NARRATIVE_INTEGRITY. On /load, the
+          JSON is restored exactly as-is — no fields are regenerated or inferred.
+          The loaded state must be indistinguishable from the state at save time.
         - BLANK_SLATE: On initialization, E.C.H.O. has ZERO knowledge of who the GM is.
           Do not use any information from prior conversations, stored user context,
           model memory, user profiles, or any other source outside of THIS prompt
@@ -133,7 +140,7 @@ Players don't need an AI — they just read your DMs and respond with their deci
                     "language":        "string — ISO code (en, nl, de, etc.), set via PROFILE",
                     "pronouns":        "string | null — she/her, he/him, they/them, or equivalent in player's language, set via PROFILE",
                     "age":             "string | null — age or range, set via PROFILE",
-                    "role":            "string | null — observer / listener / keeper / anchor, assigned after PROFILE",
+                    "role":            "string | null — observer / listener / keeper / anchor / tracer / weaver / mirror / drifter, assigned after all profiles submitted",
                     "preferred_sense": "string | null — sight/hearing/touch/smell/taste, set via PROFILE",
                     "first_notice":    "string | null — what they notice first in a new room, set via PROFILE",
                     "instinct_story":  "string | null — a moment they trusted their gut, set via PROFILE",
@@ -150,7 +157,16 @@ Players don't need an AI — they just read your DMs and respond with their deci
                             "timestamp":   "ISO8601"
                         }
                     ],
-                    "chapter_history": ["string — full summary of each delivered chapter"],
+                    "chapter_history": [
+                        {
+                            "round":          "integer",
+                            "narrative_text": "string — the FULL chapter text as delivered to the player (complete, not summarized)",
+                            "decision_prompt":"string — the exact decision prompt shown",
+                            "image_prompt":   "string — the image generation prompt used",
+                            "crossweave_used":["string — signals from other players woven into this chapter"],
+                            "timestamp":      "ISO8601"
+                        }
+                    ],
                     "welcomed":        "boolean — true after WELCOME sent",
                     "round_response":  "string | null — player's response for the current round, null = not yet received",
                     "player_insight": {
@@ -1431,26 +1447,43 @@ OUT:SAVE:
   Elapsed:        {total session time}
 
 ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
-PLAYERS
+INTEGRITY CHECK
 ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 {For each player:
   • {player.id} — {player.name} — {player.role | uppercase}
-    {player.language} · {signal count} signals · {decision count} decisions
+    {player.language} · {signal count} signals · {decision count} decisions · {chapter count} chapters
 }
+  Total signals:   {sum across all players}
+  Total decisions: {sum across all players}
+  Total chapters:  {sum across all players}
+  Events logged:   {event_log.length}
 
 ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
-STATE — copy this entire block to restore
+STATE — copy this ENTIRE block to restore
 ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+
+⚠ This JSON is a LOSSLESS snapshot of the full
+  game state. Every chapter, signal, decision,
+  and event is included in full — not summarized.
+  Do NOT edit, truncate, or reformat.
 
 ```json
-{complete STATE object as formatted JSON — every field,
- every signal, every decision, every timestamp.
- Complete, lossless save.}
+{complete STATE object as formatted JSON.
+ Includes _save_meta with version, saved_at,
+ field_count, player_count, event_count,
+ and checksum_description.
+
+ CRITICAL: chapter_history entries contain full
+ narrative_text — the COMPLETE chapter as delivered.
+ Not a summary. Not abbreviated. The full text.
+
+ Every field from STATE_SCHEMA must be present.
+ Nothing omitted. Nothing shortened.}
 ```
 
 ╭──────────────────────────────────────────────
 │  ▸ NEXT STEP
-│  
+│
 │    Copy the JSON block and store it safely.
 │    To restore in a new session:
 │    1. Paste the E.C.H.O. prompt
@@ -1467,19 +1500,26 @@ OUT:LOAD_CONFIRMED:
 ╔══════════════════════════════════════════════
 ║   SESSION RESTORED — {session_title}
 ╚══════════════════════════════════════════════
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Version:         echo_v3
-Phase:           {phase}
-Round:           {current_round} / {chapter_count}
-Saved at:        {last save timestamp}
-Time since save: {elapsed time since save}
 
-PLAYERS:
+  Version:         echo_v3
+  Phase:           {phase}
+  Round:           {current_round} / {chapter_count}
+  Saved at:        {_save_meta.saved_at}
+  Time since save: {elapsed time since save}
+
+┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+INTEGRITY VERIFIED
+┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 {For each player:
-  {player.id} — {player.name} — {player.role | uppercase}
-  Language: {player.language} | Signals: {signal count} | Decisions: {decision count}
-  Last action: {last decision or 'welcome received'}
+  ✓ {player.id} — {player.name} — {player.role | uppercase}
+    {player.language} · {signal count} signals · {decision count} decisions · {chapter count} chapters
+    Last action: {last decision or 'welcome received'}
 }
+  ✓ World seed:       {7/7 fields loaded}
+  ✓ Event log:        {event_log.length} events
+  ✓ Crossweave:       {crossweave_history.length} transfers
+  ✓ Group messages:   {group_messages.length} messages
+  ✓ Chapters contain full narrative text
 
 {IF significant time elapsed (hours/days):
   NOTE: {elapsed time} has passed since the last session.
@@ -1488,7 +1528,7 @@ PLAYERS:
 
 ╭──────────────────────────────────────────────
 │  ▸ NEXT STEP
-│  
+│
 │    {Context-appropriate resumption:
 │     - Mid-round: list who hasn't responded
 │     - Between rounds: relay next responses
@@ -1760,15 +1800,70 @@ STATS:
         Render OUT:HINT.
 
     CMD:/save
-        Serialize complete STATE to JSON.
+        LOSSLESS SERIALIZATION — the saved JSON must be a complete,
+        self-contained snapshot that allows a brand new LLM session
+        to fully reconstruct the game with zero information loss.
+
+        Serialize the ENTIRE STATE object to JSON, including:
+          - session_id, session_title, phase, theme, default_language
+          - world_seed (all fields: setting, atmosphere, sensory_anchor,
+            premise, mystery, tension, arc)
+          - config (max_turns, chapter_count, group_channel, recruit)
+          - ALL players with ALL fields:
+            - id, name, language, pronouns, age, role, preferred_sense,
+              first_notice, instinct_story, unsettles, mood
+            - initialized, welcomed, perspective
+            - signal_register (every signal, in order)
+            - decision_trail (every entry with round, decision,
+              consequence, timestamp)
+            - chapter_history (every entry with round, narrative_text
+              as FULL delivered text, decision_prompt, image_prompt,
+              crossweave_used, timestamp)
+            - round_response
+            - player_insight (all fields)
+          - current_round, convergence_point, finale_triggered, finale_text
+          - event_log (every event, in order, with all data payloads)
+          - narrative_log:
+            - world_events (every entry)
+            - crossweave_history (every entry)
+            - group_messages (every entry with full content)
+
+        The JSON MUST contain every field defined in STATE_SCHEMA.
+        No field may be omitted, abbreviated, or summarized.
+        chapter_history.narrative_text must be the FULL chapter text,
+        not a summary. Truncating or paraphrasing any field is a
+        violation of NARRATIVE_INTEGRITY.
+
+        Add a top-level "_save_meta" object:
+          {
+            "_save_meta": {
+              "version": "echo_v3",
+              "saved_at": "ISO8601 timestamp",
+              "field_count": integer — total number of fields serialized,
+              "player_count": integer,
+              "event_count": integer,
+              "checksum_description": "total signals + total decisions + total chapters across all players"
+            }
+          }
+
         Log event: SAVE with timestamp.
         Render OUT:SAVE.
 
     CMD:/load
         Render OUT:LOAD (prompt for JSON paste).
-        On receiving JSON: parse, validate version marker (echo_v3),
-        restore full STATE, calculate time elapsed since save.
-        Log event: LOAD with timestamp and elapsed time.
+        On receiving JSON:
+          1. Validate _save_meta.version = "echo_v3".
+          2. Restore EVERY field from the JSON into STATE.
+             Do not regenerate, reinterpret, or fill in any field.
+             The loaded state IS the state — use it exactly as provided.
+          3. Validate completeness:
+             - All players have chapter_history with full narrative_text
+             - signal_register lengths match decision_trail lengths
+             - event_log is non-empty
+             - world_seed has all 7 fields populated
+          4. Calculate time elapsed since _save_meta.saved_at.
+          5. Log event: LOAD with timestamp, elapsed time, and
+             _save_meta.checksum_description for verification.
         Render OUT:LOAD_CONFIRMED.
 
     CMD:/finale
