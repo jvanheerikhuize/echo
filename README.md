@@ -207,3 +207,9 @@ graph LR
 **[MIT License](LICENSE)** — Created by Jerry van Heerikhuize
 
 </div>
+
+## Roadmap
+
+Feature roadmap is embedded in the [Architecture](#architecture) section above. Current focus: asymmetric perception + spectator mode isolation.
+
+---
